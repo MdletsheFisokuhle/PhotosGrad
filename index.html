@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Graduation Gallery</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --gold-dark: #8a6f2e;
+    --cream: #faf6ef;
+    --dark: #1a1410;
+    --dark2: #2c2418;
+    --text: #3d2f1e;
+    --text-light: #7a6248;
+    --border: rgba(201,168,76,0.25);
+  }
+  * { margin:0;padding:0;box-sizing:border-box; }
+  body { font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--text);min-height:100vh; }
+  body::before {
+    content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.35;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+  }
+  header { background:var(--dark);position:relative;overflow:hidden; }
+  header::before { content:'';position:absolute;top:-40%;left:-10%;width:50%;height:180%;background:radial-gradient(ellipse,rgba(201,168,76,.1) 0%,transparent 70%);pointer-events:none; }
+  .header-inner { max-width:1200px;margin:0 auto;padding:44px 32px 36px;text-align:center;position:relative; }
+  .header-ornament { font-size:11px;letter-spacing:6px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;opacity:.8; }
+  header h1 { font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:300;color:#f5edd8;letter-spacing:2px;line-height:1.1;margin-bottom:10px; }
+  header h1 span { color:var(--gold);font-style:italic; }
+  .header-sub { font-size:11px;color:rgba(245,237,216,.4);letter-spacing:4px;text-transform:uppercase;margin-bottom:30px; }
+  .gold-line { width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto; }
+
+  /* Banner */
+  #setup-banner { background:linear-gradient(135deg,#fffbf0,#fef3d0);border:1px solid var(--gold-light);border-left:4px solid var(--gold);padding:20px 24px;margin:28px auto;max-width:880px;border-radius:4px;display:flex;align-items:flex-start;gap:14px; }
+  #setup-banner .ico { font-size:22px;flex-shrink:0;margin-top:2px; }
+  #setup-banner h3 { font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--dark);margin-bottom:5px; }
+  #setup-banner p { font-size:12px;color:var(--text-light);line-height:1.75; }
+  #setup-banner a { color:var(--gold-dark);font-weight:600;text-decoration:none; }
+  #setup-banner a:hover { text-decoration:underline; }
+  .steps { display:flex;flex-wrap:wrap;gap:4px;margin-top:10px; }
+  .step { display:flex;align-items:flex-start;gap:8px;flex:1;min-width:150px;padding:6px 12px 6px 0; }
+  .step-num { width:20px;height:20px;border-radius:50%;background:var(--gold);color:var(--dark);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px; }
+  .step-text { font-size:11px;color:var(--text-light);line-height:1.6; }
+  .step-text strong { color:var(--dark); }
+
+  /* Config */
+  .config-panel { background:white;border:1px solid var(--border);border-radius:8px;padding:24px;max-width:880px;margin:0 auto 28px;box-shadow:0 2px 18px rgba(0,0,0,.06); }
+  .config-panel h2 { font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--dark);margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--border); }
+  .config-grid { display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px; }
+  @media(max-width:600px){.config-grid{grid-template-columns:1fr;}}
+  .cfg-label { display:block;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:5px;font-weight:500; }
+  .cfg-input { width:100%;padding:9px 12px;border:1px solid #e0d5c5;border-radius:4px;font-family:'Montserrat',sans-serif;font-size:12.5px;color:var(--dark);background:#fdfaf5;transition:border-color .2s; }
+  .cfg-input:focus { outline:none;border-color:var(--gold);background:white; }
+  .status-row { display:flex;gap:10px;align-items:center;flex-wrap:wrap; }
+  .status-dot { width:8px;height:8px;border-radius:50%;background:#ccc;display:inline-block;margin-right:5px; }
+  .status-dot.ok { background:#4caf50; }
+  .status-dot.err { background:#f44336; }
+  .cloud-status { font-size:11px;color:var(--text-light);display:flex;align-items:center; }
+
+  /* Buttons */
+  .btn { display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:4px;font-family:'Montserrat',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;border:none;transition:all .2s; }
+  .btn-gold { background:var(--gold);color:var(--dark); }
+  .btn-gold:hover { background:var(--gold-dark);color:white; }
+  .btn-outline { background:transparent;color:var(--gold-dark);border:1px solid var(--gold); }
+  .btn-outline:hover { background:var(--gold);color:var(--dark); }
+  .btn-dark { background:var(--dark);color:var(--gold-light); }
+  .btn-dark:hover { background:var(--dark2); }
+  .btn-sm { padding:7px 14px;font-size:10.5px; }
+  .btn-danger { background:transparent;color:#c62828;border:1px solid #f44336; }
+  .btn-danger:hover { background:#f44336;color:white; }
+
+  /* Main */
+  main { max-width:1200px;margin:0 auto;padding:20px 20px 80px; }
+
+  /* Folder nav */
+  .folders-nav { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;align-items:center; }
+  .folder-tab { padding:9px 20px;border:1px solid var(--border);border-radius:40px;background:white;font-family:'Montserrat',sans-serif;font-size:11.5px;font-weight:500;color:var(--text-light);cursor:pointer;transition:all .2s;letter-spacing:.4px;display:inline-flex;align-items:center;gap:7px; }
+  .folder-tab:hover { border-color:var(--gold);color:var(--gold-dark); }
+  .folder-tab.active { background:var(--gold);border-color:var(--gold);color:var(--dark);font-weight:600; }
+  .folder-tab .cnt { background:rgba(0,0,0,.1);border-radius:20px;padding:1px 7px;font-size:9.5px; }
+  .add-folder-btn { padding:8px 16px;border:1px dashed var(--border);border-radius:40px;background:transparent;font-size:11.5px;color:var(--text-light);cursor:pointer;transition:all .2s;font-family:'Montserrat',sans-serif; }
+  .add-folder-btn:hover { border-color:var(--gold);color:var(--gold-dark); }
+
+  /* Section */
+  .section-header { display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px; }
+  .section-title { font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:400;color:var(--dark); }
+  .section-title em { color:var(--gold);font-style:italic; }
+  .section-actions { display:flex;gap:8px;flex-wrap:wrap; }
+
+  /* Upload zone */
+  .upload-zone { border:2px dashed var(--gold-light);border-radius:12px;padding:42px 20px;text-align:center;background:rgba(201,168,76,.03);margin-bottom:28px;transition:all .3s;cursor:pointer;position:relative; }
+  .upload-zone:hover,.upload-zone.drag-over { border-color:var(--gold);background:rgba(201,168,76,.07); }
+  .upload-zone input { position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%; }
+  .upload-icon { font-size:44px;margin-bottom:10px; }
+  .upload-zone h3 { font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--dark);margin-bottom:7px; }
+  .upload-zone p { font-size:11.5px;color:var(--text-light);line-height:1.85; }
+
+  /* Progress */
+  .upload-progress { background:white;border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-bottom:14px;display:none; }
+  .upload-progress.show { display:block; }
+  .progress-label { font-size:11.5px;color:var(--text-light);margin-bottom:7px;display:flex;justify-content:space-between; }
+  .progress-bar-outer { height:4px;background:#f0e8d8;border-radius:4px;overflow:hidden; }
+  .progress-bar-inner { height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-dark));border-radius:4px;width:0%;transition:width .3s; }
+
+  /* Grid */
+  .photo-grid { columns:4;column-gap:14px; }
+  @media(max-width:900px){.photo-grid{columns:3;}}
+  @media(max-width:600px){.photo-grid{columns:2;}}
+  @media(max-width:380px){.photo-grid{columns:1;}}
+  .photo-card { break-inside:avoid;margin-bottom:14px;position:relative;border-radius:8px;overflow:hidden;background:white;box-shadow:0 2px 10px rgba(0,0,0,.08);transition:transform .2s,box-shadow .2s;cursor:pointer; }
+  .photo-card:hover { transform:translateY(-3px);box-shadow:0 8px 26px rgba(0,0,0,.14); }
+  .photo-card img,.photo-card video { width:100%;display:block; }
+  .photo-card-overlay { position:absolute;inset:0;background:linear-gradient(to top,rgba(26,20,16,.88) 0%,transparent 55%);opacity:0;transition:opacity .2s;display:flex;align-items:flex-end;padding:12px; }
+  .photo-card:hover .photo-card-overlay { opacity:1; }
+  .photo-card-actions { display:flex;gap:7px;width:100%;justify-content:flex-end; }
+  .icon-btn { width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);color:white;font-size:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s; }
+  .icon-btn:hover { background:var(--gold);color:var(--dark);border-color:var(--gold); }
+  .photo-card-name { font-size:10.5px;color:rgba(255,255,255,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1; }
+  .video-badge { position:absolute;top:9px;left:9px;background:rgba(26,20,16,.78);color:var(--gold-light);font-size:9.5px;font-weight:600;letter-spacing:1px;padding:3px 8px;border-radius:20px;text-transform:uppercase; }
+
+  /* Empty */
+  .empty-state { text-align:center;padding:72px 20px;color:var(--text-light); }
+  .empty-state .empty-icon { font-size:54px;margin-bottom:14px;opacity:.45; }
+  .empty-state h3 { font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--dark);margin-bottom:7px; }
+  .empty-state p { font-size:12.5px;line-height:1.75; }
+
+  /* Lightbox */
+  .lightbox { position:fixed;inset:0;background:rgba(8,6,4,.96);z-index:9999;display:none;align-items:center;justify-content:center;padding:16px; }
+  .lightbox.open { display:flex; }
+  .lightbox-inner { position:relative;display:flex;flex-direction:column;align-items:center; }
+  .lightbox img,.lightbox video { max-width:88vw;max-height:80vh;border-radius:4px;object-fit:contain; }
+  .lightbox-close { position:fixed;top:18px;right:22px;font-size:30px;color:rgba(255,255,255,.65);cursor:pointer;line-height:1;z-index:10000; }
+  .lightbox-close:hover { color:var(--gold); }
+  .lightbox-actions { display:flex;gap:10px;margin-top:14px; }
+  .lightbox-nav { position:fixed;top:50%;transform:translateY(-50%);font-size:34px;color:rgba(255,255,255,.45);cursor:pointer;padding:10px;transition:color .2s;z-index:10000; }
+  .lightbox-nav:hover { color:var(--gold); }
+  .lightbox-nav.prev { left:14px; }
+  .lightbox-nav.next { right:14px; }
+
+  /* Toast */
+  .toast { position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--dark);color:var(--gold-light);padding:11px 22px;border-radius:40px;font-size:12.5px;font-weight:500;z-index:99999;opacity:0;transition:all .3s;white-space:nowrap;border:1px solid rgba(201,168,76,.3); }
+  .toast.show { opacity:1;transform:translateX(-50%) translateY(0); }
+
+  /* Modal */
+  .modal-overlay { position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9000;display:none;align-items:center;justify-content:center; }
+  .modal-overlay.open { display:flex; }
+  .modal { background:white;border-radius:12px;padding:28px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.2); }
+  .modal h3 { font-family:'Cormorant Garamond',serif;font-size:1.35rem;margin-bottom:14px; }
+  .modal input { width:100%;padding:9px 12px;border:1px solid #e0d5c5;border-radius:4px;font-family:'Montserrat',sans-serif;font-size:12.5px;margin-bottom:14px; }
+  .modal input:focus { outline:none;border-color:var(--gold); }
+  .modal-actions { display:flex;gap:8px;justify-content:flex-end; }
+
+  /* No config note */
+  .no-config-note { text-align:center;padding:28px;background:#fff9f0;border:1px dashed var(--gold-light);border-radius:8px;margin-bottom:24px;font-size:12.5px;color:var(--text-light);display:none; }
+  .no-config-note strong { color:var(--gold-dark); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-ornament">✦ &nbsp; Memories &nbsp; ✦</div>
+    <h1>My <span>Graduation</span> Gallery</h1>
+    <p class="header-sub">A lifetime of milestones, beautifully preserved</p>
+    <div class="gold-line"></div>
+  </div>
+</header>
+
+<div style="max-width:1200px;margin:0 auto;padding:0 20px;">
+
+
+
+  <div class="config-panel">
+    <h2>⚙️ Cloudinary Configuration</h2>
+    <div class="config-grid">
+      <div>
+        <label class="cfg-label">Cloud Name *</label>
+        <input class="cfg-input" id="cfg-cloud" type="text" placeholder="e.g. my-gallery-abc">
+      </div>
+      <div>
+        <label class="cfg-label">Upload Preset (Unsigned) *</label>
+        <input class="cfg-input" id="cfg-preset" type="text" placeholder="e.g. graduation_preset">
+      </div>
+      <div>
+        <label class="cfg-label">Gallery Title</label>
+        <input class="cfg-input" id="cfg-title" type="text" placeholder="My Graduation Gallery">
+      </div>
+    </div>
+    <div class="status-row">
+      <button class="btn btn-gold" onclick="saveConfig()">💾 Save &amp; Connect</button>
+      <button class="btn btn-outline" onclick="testConnection()">🔗 Test</button>
+      <span class="cloud-status"><span class="status-dot" id="status-dot"></span><span id="status-text">Not configured</span></span>
+    </div>
+  </div>
+
+</div>
+
+<main>
+  <div class="folders-nav" id="folders-nav">
+    <button class="add-folder-btn" onclick="addFolder()">＋ New Folder</button>
+  </div>
+
+  <div class="section-header">
+    <div class="section-title" id="section-title">Select a <em>folder</em></div>
+    <div class="section-actions">
+      <button class="btn btn-outline btn-sm" onclick="downloadAll()" id="btn-dl-all" style="display:none">⬇ Download All</button>
+      <button class="btn btn-danger btn-sm" onclick="deleteFolder()" id="btn-del-folder" style="display:none">🗑 Delete Folder</button>
+    </div>
+  </div>
+
+  <div class="no-config-note" id="no-config-note">
+    ⚠️ <strong>Configure Cloudinary above first</strong> to enable uploads. Your images need somewhere to live!
+  </div>
+
+  <div class="upload-zone" id="upload-zone" style="display:none"
+    ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+    <input type="file" multiple accept="image/*,video/*" onchange="handleFileSelect(event)" id="file-input">
+    <div class="upload-icon">📸</div>
+    <h3>Drop photos &amp; videos here</h3>
+    <p>or tap to browse from your camera roll or files<br>Supports JPG, PNG, HEIC, GIF, MP4, MOV — any device</p>
+  </div>
+
+  <div class="upload-progress" id="upload-progress">
+    <div class="progress-label"><span id="progress-lbl">Uploading…</span><span id="progress-pct">0%</span></div>
+    <div class="progress-bar-outer"><div class="progress-bar-inner" id="progress-bar"></div></div>
+  </div>
+
+  <div class="photo-grid" id="photo-grid"></div>
+  <div class="empty-state" id="empty-state" style="display:none">
+    <div class="empty-icon">🎓</div>
+    <h3>No photos yet</h3>
+    <p>Upload your first graduation memory above.<br>Your images are stored securely in the cloud.</p>
+  </div>
+</main>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="handleLbClick(event)">
+  <span class="lightbox-close" onclick="closeLightbox()">×</span>
+  <span class="lightbox-nav prev" onclick="lbNav(-1)">‹</span>
+  <span class="lightbox-nav next" onclick="lbNav(1)">›</span>
+  <div class="lightbox-inner">
+    <div id="lb-content"></div>
+    <div class="lightbox-actions">
+      <button class="btn btn-gold btn-sm" onclick="downloadCurrent()">⬇ Download</button>
+      <button class="btn btn-sm" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.2)" onclick="deleteCurrent()">🗑 Remove</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add folder modal -->
+<div class="modal-overlay" id="folder-modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <h3>📁 Create New Folder</h3>
+    <input type="text" id="folder-name-input" placeholder="e.g. 2027 Graduation, Family Day…" maxlength="40">
+    <div class="modal-actions">
+      <button class="btn btn-outline btn-sm" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-gold btn-sm" onclick="confirmAddFolder()">Create Folder</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let cfg = {};
+let folders = [];
+let media = {};
+let activeFolder = null;
+let lbItems = [];
+let lbIdx = 0;
+
+function init() {
+  try {
+    cfg = JSON.parse(localStorage.getItem('gcfg') || '{}');
+    folders = JSON.parse(localStorage.getItem('gfolders') || '[]');
+    media = JSON.parse(localStorage.getItem('gmedia') || '{}');
+  } catch(e) {}
+
+  if (!folders.length) {
+    folders = [
+      {id:'grad2025',name:'🎓 2025 Graduation'},
+      {id:'grad2026',name:'🎓 2026 Graduation'},
+      {id:'extras',name:'📷 Extra Memories'}
+    ];
+    media = {grad2025:[],grad2026:[],extras:[]};
+    save();
+  }
+
+  if (cfg.cloudName) {
+    document.getElementById('cfg-cloud').value = cfg.cloudName;
+    document.getElementById('cfg-preset').value = cfg.preset || '';
+    document.getElementById('cfg-title').value = cfg.title || '';
+    setStatus(true);
+  }
+  if (cfg.title) document.querySelector('header h1').innerHTML = cfg.title;
+
+  renderFolders();
+  if (folders.length) setActiveFolder(folders[0].id);
+}
+
+function save() {
+  localStorage.setItem('gcfg', JSON.stringify(cfg));
+  localStorage.setItem('gfolders', JSON.stringify(folders));
+  localStorage.setItem('gmedia', JSON.stringify(media));
+}
+
+// Config
+function saveConfig() {
+  const cn = document.getElementById('cfg-cloud').value.trim();
+  const pr = document.getElementById('cfg-preset').value.trim();
+  const title = document.getElementById('cfg-title').value.trim();
+  if (!cn || !pr) { toast('⚠️ Cloud Name and Upload Preset are required'); return; }
+  cfg = {cloudName:cn, preset:pr, title: title || 'My Graduation Gallery'};
+  save();
+  setStatus(true);
+  if (title) document.querySelector('header h1').innerHTML = title;
+  if (activeFolder) showUploadZone();
+  toast('✅ Configuration saved!');
+}
+
+function testConnection() {
+  const cn = document.getElementById('cfg-cloud').value.trim();
+  if (!cn) { toast('Enter your Cloud Name first'); return; }
+  toast('🔗 Testing connection…');
+  fetch(`https://res.cloudinary.com/${cn}/image/upload/sample.jpg`,{method:'HEAD'})
+    .then(r => { const ok = r.ok || r.status < 500; setStatus(ok); toast(ok ? '✅ Connected to Cloudinary!' : '⚠️ Cloud name may be incorrect'); })
+    .catch(() => { setStatus(false); toast('❌ Could not connect. Check your Cloud Name.'); });
+}
+
+function setStatus(ok) {
+  document.getElementById('status-dot').className = 'status-dot '+(ok?'ok':'err');
+  document.getElementById('status-text').textContent = ok ? 'Connected to Cloudinary ✓' : 'Not connected';
+}
+
+// Folders
+function renderFolders() {
+  const nav = document.getElementById('folders-nav');
+  nav.querySelectorAll('.folder-tab').forEach(t=>t.remove());
+  const addBtn = nav.querySelector('.add-folder-btn');
+  folders.forEach(f => {
+    const tab = document.createElement('button');
+    tab.className = 'folder-tab'+(activeFolder===f.id?' active':'');
+    const count = (media[f.id]||[]).length;
+    tab.innerHTML = `${f.name} <span class="cnt">${count}</span>`;
+    tab.onclick = () => setActiveFolder(f.id);
+    nav.insertBefore(tab, addBtn);
+  });
+}
+
+function setActiveFolder(id) {
+  activeFolder = id;
+  const f = folders.find(x=>x.id===id);
+  document.getElementById('section-title').innerHTML = f ? f.name : 'Gallery';
+  document.getElementById('btn-dl-all').style.display = 'inline-flex';
+  document.getElementById('btn-del-folder').style.display = 'inline-flex';
+  showUploadZone();
+  renderFolders();
+  renderGrid();
+}
+
+function showUploadZone() {
+  const uz = document.getElementById('upload-zone');
+  const note = document.getElementById('no-config-note');
+  if (cfg.cloudName && cfg.preset) {
+    uz.style.display = 'block';
+    note.style.display = 'none';
+  } else {
+    uz.style.display = 'none';
+    note.style.display = 'block';
+  }
+}
+
+function addFolder() {
+  document.getElementById('folder-name-input').value = '';
+  document.getElementById('folder-modal').classList.add('open');
+  setTimeout(()=>document.getElementById('folder-name-input').focus(),100);
+}
+
+function confirmAddFolder() {
+  const name = document.getElementById('folder-name-input').value.trim();
+  if (!name) { toast('Enter a folder name'); return; }
+  const id = 'f_'+Date.now();
+  folders.push({id,name});
+  media[id]=[];
+  save();
+  closeModal();
+  setActiveFolder(id);
+  toast(`📁 "${name}" created!`);
+}
+
+function deleteFolder() {
+  if (!activeFolder) return;
+  const f = folders.find(x=>x.id===activeFolder);
+  if (!confirm(`Delete folder "${f?.name}"?\n\nImages will be removed from this gallery (they stay on Cloudinary unless deleted there too).`)) return;
+  folders = folders.filter(x=>x.id!==activeFolder);
+  delete media[activeFolder];
+  save();
+  activeFolder = folders[0]?.id||null;
+  renderFolders();
+  if (activeFolder) setActiveFolder(activeFolder);
+  else { document.getElementById('photo-grid').innerHTML=''; showEmpty(false); document.getElementById('btn-dl-all').style.display='none'; document.getElementById('btn-del-folder').style.display='none'; }
+  toast('🗑 Folder deleted');
+}
+
+function closeModal() { document.getElementById('folder-modal').classList.remove('open'); }
+
+// Upload
+function handleDragOver(e){e.preventDefault();document.getElementById('upload-zone').classList.add('drag-over');}
+function handleDragLeave(){document.getElementById('upload-zone').classList.remove('drag-over');}
+function handleDrop(e){e.preventDefault();document.getElementById('upload-zone').classList.remove('drag-over');uploadFiles(Array.from(e.dataTransfer.files));}
+function handleFileSelect(e){uploadFiles(Array.from(e.target.files));e.target.value='';}
+
+async function uploadFiles(files) {
+  if (!cfg.cloudName||!cfg.preset) { toast('⚠️ Save your Cloudinary config first!'); return; }
+  if (!activeFolder) { toast('Select a folder first'); return; }
+  if (!files.length) return;
+
+  const prog = document.getElementById('upload-progress');
+  const bar = document.getElementById('progress-bar');
+  const pct = document.getElementById('progress-pct');
+  const lbl = document.getElementById('progress-lbl');
+  prog.classList.add('show');
+
+  let done=0;
+  for (const file of files) {
+    lbl.textContent = `Uploading ${file.name}…`;
+    const fd = new FormData();
+    fd.append('file', file);
+    fd.append('upload_preset', cfg.preset);
+    fd.append('folder', `graduation_gallery/${activeFolder}`);
+
+    try {
+      const isVideo = file.type.startsWith('video/');
+      const url = `https://api.cloudinary.com/v1_1/${cfg.cloudName}/${isVideo?'video':'image'}/upload`;
+      const res = await fetch(url, {method:'POST',body:fd});
+      const data = await res.json();
+      if (data.secure_url) {
+        if (!media[activeFolder]) media[activeFolder]=[];
+        const thumb = isVideo
+          ? data.secure_url.replace('/upload/','/upload/w_500,h_400,c_fill,f_jpg/')
+          : data.secure_url.replace('/upload/','/upload/w_500,c_limit,q_auto/');
+        media[activeFolder].push({id:data.public_id,url:data.secure_url,thumb,name:file.name,type:isVideo?'video':'image'});
+        save();
+        renderGrid();
+        renderFolders();
+      } else {
+        toast(`❌ ${file.name}: ${data.error?.message||'upload failed'}`);
+      }
+    } catch(err) {
+      toast(`❌ Upload error: ${err.message}`);
+    }
+    done++;
+    const p=Math.round((done/files.length)*100);
+    bar.style.width=p+'%';
+    pct.textContent=p+'%';
+  }
+
+  setTimeout(()=>{prog.classList.remove('show');bar.style.width='0%';},1500);
+  toast(`✅ ${done} file${done>1?'s':''} uploaded!`);
+}
+
+// Grid
+function renderGrid() {
+  const grid = document.getElementById('photo-grid');
+  const items = activeFolder ? (media[activeFolder]||[]) : [];
+  grid.innerHTML='';
+  if (!items.length) { showEmpty(true); return; }
+  showEmpty(false);
+  lbItems=items;
+
+  items.forEach((item,idx)=>{
+    const card = document.createElement('div');
+    card.className='photo-card';
+    card.onclick = e => { if(!e.target.closest('.icon-btn')) openLightbox(idx); };
+
+    const mediaEl = item.type==='video'
+      ? `<video src="${item.url}" muted playsinline preload="metadata"></video><div class="video-badge">▶ Video</div>`
+      : `<img src="${item.thumb}" alt="${item.name}" loading="lazy">`;
+
+    card.innerHTML=`${mediaEl}
+      <div class="photo-card-overlay">
+        <span class="photo-card-name">${item.name}</span>
+        <div class="photo-card-actions">
+          <div class="icon-btn" title="Download" onclick="dlItem('${item.url}','${item.name}')">⬇</div>
+          <div class="icon-btn" title="Remove" onclick="removeItem('${item.id}','${activeFolder}')">🗑</div>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function showEmpty(yes){ document.getElementById('empty-state').style.display=yes?'block':'none'; }
+
+// Lightbox
+function openLightbox(idx){lbIdx=idx;renderLb();document.getElementById('lightbox').classList.add('open');document.addEventListener('keydown',lbKey);}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.removeEventListener('keydown',lbKey);}
+function handleLbClick(e){if(e.target===e.currentTarget)closeLightbox();}
+function lbKey(e){if(e.key==='Escape')closeLightbox();if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);}
+function lbNav(dir){lbIdx=(lbIdx+dir+lbItems.length)%lbItems.length;renderLb();}
+function renderLb(){
+  const item=lbItems[lbIdx];if(!item)return;
+  const c=document.getElementById('lb-content');
+  c.innerHTML=item.type==='video'
+    ?`<video src="${item.url}" controls style="max-width:88vw;max-height:78vh;border-radius:4px"></video>`
+    :`<img src="${item.url}" style="max-width:88vw;max-height:78vh;border-radius:4px;object-fit:contain" alt="${item.name}">`;
+}
+function downloadCurrent(){const i=lbItems[lbIdx];if(i)dlItem(i.url,i.name);}
+function deleteCurrent(){const i=lbItems[lbIdx];if(i){closeLightbox();removeItem(i.id,activeFolder);}}
+
+// Actions
+function dlItem(url,name){
+  const a=document.createElement('a');a.href=url;a.download=name;a.target='_blank';a.click();
+  toast('⬇ Downloading…');
+}
+
+async function downloadAll(){
+  const items=media[activeFolder]||[];
+  if(!items.length){toast('No files in this folder');return;}
+  toast(`⬇ Downloading ${Math.min(items.length,15)} files…`);
+  for(let i=0;i<Math.min(items.length,15);i++){
+    await new Promise(r=>setTimeout(r,350));
+    dlItem(items[i].url,items[i].name);
+  }
+  if(items.length>15)toast('Tip: Browser limits bulk downloads — remaining files available via Cloudinary dashboard');
+}
+
+function removeItem(id,fId){
+  if(!confirm('Remove from gallery?\n(File stays on Cloudinary unless deleted there too)'))return;
+  media[fId]=(media[fId]||[]).filter(x=>x.id!==id);
+  save();renderGrid();renderFolders();
+  toast('🗑 Removed from gallery');
+}
+
+// Toast
+let toastT;
+function toast(msg){
+  const el=document.getElementById('toast');
+  el.textContent=msg;el.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),3200);
+}
+
+// Keyboard
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&document.getElementById('folder-modal').classList.contains('open'))confirmAddFolder();
+  if(e.key==='Escape')closeModal();
+});
+
+init();
+</script>
+</body>
+</html>
