@@ -6,155 +6,142 @@
 <title>My Graduation Gallery</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --gold: #c9a84c;
-    --gold-light: #e8d5a3;
-    --gold-dark: #8a6f2e;
-    --cream: #faf6ef;
-    --dark: #1a1410;
-    --dark2: #2c2418;
-    --text: #3d2f1e;
-    --text-light: #7a6248;
-    --border: rgba(201,168,76,0.25);
-  }
-  * { margin:0;padding:0;box-sizing:border-box; }
-  body { font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--text);min-height:100vh; }
-  body::before {
-    content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.35;
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
-  }
-  header { background:var(--dark);position:relative;overflow:hidden; }
-  header::before { content:'';position:absolute;top:-40%;left:-10%;width:50%;height:180%;background:radial-gradient(ellipse,rgba(201,168,76,.1) 0%,transparent 70%);pointer-events:none; }
-  .header-inner { max-width:1200px;margin:0 auto;padding:44px 32px 36px;text-align:center;position:relative; }
-  .header-ornament { font-size:11px;letter-spacing:6px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;opacity:.8; }
-  header h1 { font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:300;color:#f5edd8;letter-spacing:2px;line-height:1.1;margin-bottom:10px; }
-  header h1 span { color:var(--gold);font-style:italic; }
-  .header-sub { font-size:11px;color:rgba(245,237,216,.4);letter-spacing:4px;text-transform:uppercase;margin-bottom:30px; }
-  .gold-line { width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto; }
+:root{--gold:#c9a84c;--gold-light:#e8d5a3;--gold-dark:#8a6f2e;--cream:#faf6ef;--dark:#1a1410;--dark2:#2c2418;--text:#3d2f1e;--text-light:#7a6248;--border:rgba(201,168,76,0.25);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.3;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");}
 
-  /* Banner */
-  #setup-banner { background:linear-gradient(135deg,#fffbf0,#fef3d0);border:1px solid var(--gold-light);border-left:4px solid var(--gold);padding:20px 24px;margin:28px auto;max-width:880px;border-radius:4px;display:flex;align-items:flex-start;gap:14px; }
-  #setup-banner .ico { font-size:22px;flex-shrink:0;margin-top:2px; }
-  #setup-banner h3 { font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--dark);margin-bottom:5px; }
-  #setup-banner p { font-size:12px;color:var(--text-light);line-height:1.75; }
-  #setup-banner a { color:var(--gold-dark);font-weight:600;text-decoration:none; }
-  #setup-banner a:hover { text-decoration:underline; }
-  .steps { display:flex;flex-wrap:wrap;gap:4px;margin-top:10px; }
-  .step { display:flex;align-items:flex-start;gap:8px;flex:1;min-width:150px;padding:6px 12px 6px 0; }
-  .step-num { width:20px;height:20px;border-radius:50%;background:var(--gold);color:var(--dark);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px; }
-  .step-text { font-size:11px;color:var(--text-light);line-height:1.6; }
-  .step-text strong { color:var(--dark); }
+header{background:var(--dark);position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;top:-40%;left:-10%;width:50%;height:180%;background:radial-gradient(ellipse,rgba(201,168,76,.1) 0%,transparent 70%);pointer-events:none;}
+.header-inner{max-width:1200px;margin:0 auto;padding:44px 32px 36px;text-align:center;position:relative;}
+.header-ornament{font-size:11px;letter-spacing:6px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;opacity:.8;}
+header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:300;color:#f5edd8;letter-spacing:2px;line-height:1.1;margin-bottom:10px;}
+header h1 span{color:var(--gold);font-style:italic;}
+.header-sub{font-size:11px;color:rgba(245,237,216,.4);letter-spacing:4px;text-transform:uppercase;margin-bottom:30px;}
+.gold-line{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto;}
 
-  /* Config */
-  .config-panel { background:white;border:1px solid var(--border);border-radius:8px;padding:24px;max-width:880px;margin:0 auto 28px;box-shadow:0 2px 18px rgba(0,0,0,.06); }
-  .config-panel h2 { font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--dark);margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--border); }
-  .config-grid { display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px; }
-  @media(max-width:600px){.config-grid{grid-template-columns:1fr;}}
-  .cfg-label { display:block;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:5px;font-weight:500; }
-  .cfg-input { width:100%;padding:9px 12px;border:1px solid #e0d5c5;border-radius:4px;font-family:'Montserrat',sans-serif;font-size:12.5px;color:var(--dark);background:#fdfaf5;transition:border-color .2s; }
-  .cfg-input:focus { outline:none;border-color:var(--gold);background:white; }
-  .status-row { display:flex;gap:10px;align-items:center;flex-wrap:wrap; }
-  .status-dot { width:8px;height:8px;border-radius:50%;background:#ccc;display:inline-block;margin-right:5px; }
-  .status-dot.ok { background:#4caf50; }
-  .status-dot.err { background:#f44336; }
-  .cloud-status { font-size:11px;color:var(--text-light);display:flex;align-items:center; }
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px;}
 
-  /* Buttons */
-  .btn { display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:4px;font-family:'Montserrat',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;border:none;transition:all .2s; }
-  .btn-gold { background:var(--gold);color:var(--dark); }
-  .btn-gold:hover { background:var(--gold-dark);color:white; }
-  .btn-outline { background:transparent;color:var(--gold-dark);border:1px solid var(--gold); }
-  .btn-outline:hover { background:var(--gold);color:var(--dark); }
-  .btn-dark { background:var(--dark);color:var(--gold-light); }
-  .btn-dark:hover { background:var(--dark2); }
-  .btn-sm { padding:7px 14px;font-size:10.5px; }
-  .btn-danger { background:transparent;color:#c62828;border:1px solid #f44336; }
-  .btn-danger:hover { background:#f44336;color:white; }
+/* CONFIG PANEL */
+.config-panel{background:white;border:1px solid var(--border);border-radius:10px;padding:26px;margin:26px 0;box-shadow:0 2px 18px rgba(0,0,0,.06);}
+.config-panel h2{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--dark);margin-bottom:5px;}
+.config-sub{font-size:11.5px;color:var(--text-light);margin-bottom:20px;line-height:1.7;}
+.config-sub a{color:var(--gold-dark);font-weight:600;text-decoration:none;}
+.config-sub a:hover{text-decoration:underline;}
 
-  /* Main */
-  main { max-width:1200px;margin:0 auto;padding:20px 20px 80px; }
+.steps-box{background:#fdfaf5;border:1px solid var(--border);border-radius:8px;padding:16px 18px;margin-bottom:20px;}
+.steps-box h4{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:12px;font-weight:600;}
+.steps-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;}
+.step{display:flex;gap:10px;align-items:flex-start;}
+.step-num{width:22px;height:22px;border-radius:50%;background:var(--gold);color:var(--dark);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.step-text{font-size:11.5px;color:var(--text-light);line-height:1.65;}
+.step-text strong{color:var(--dark);}
 
-  /* Folder nav */
-  .folders-nav { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;align-items:center; }
-  .folder-tab { padding:9px 20px;border:1px solid var(--border);border-radius:40px;background:white;font-family:'Montserrat',sans-serif;font-size:11.5px;font-weight:500;color:var(--text-light);cursor:pointer;transition:all .2s;letter-spacing:.4px;display:inline-flex;align-items:center;gap:7px; }
-  .folder-tab:hover { border-color:var(--gold);color:var(--gold-dark); }
-  .folder-tab.active { background:var(--gold);border-color:var(--gold);color:var(--dark);font-weight:600; }
-  .folder-tab .cnt { background:rgba(0,0,0,.1);border-radius:20px;padding:1px 7px;font-size:9.5px; }
-  .add-folder-btn { padding:8px 16px;border:1px dashed var(--border);border-radius:40px;background:transparent;font-size:11.5px;color:var(--text-light);cursor:pointer;transition:all .2s;font-family:'Montserrat',sans-serif; }
-  .add-folder-btn:hover { border-color:var(--gold);color:var(--gold-dark); }
+.cfg-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px;}
+@media(max-width:700px){.cfg-grid{grid-template-columns:1fr;}}
+.cfg-field label{display:block;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:5px;font-weight:600;}
+.cfg-field input{width:100%;padding:10px 13px;border:1px solid #e0d5c5;border-radius:5px;font-family:'Montserrat',sans-serif;font-size:12.5px;color:var(--dark);background:#fdfaf5;transition:border-color .2s;}
+.cfg-field input:focus{outline:none;border-color:var(--gold);background:white;}
+.cfg-field .hint{font-size:10px;color:var(--text-light);margin-top:4px;line-height:1.5;}
 
-  /* Section */
-  .section-header { display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px; }
-  .section-title { font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:400;color:var(--dark); }
-  .section-title em { color:var(--gold);font-style:italic; }
-  .section-actions { display:flex;gap:8px;flex-wrap:wrap; }
+.status-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.status-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;background:#f5f0e8;color:var(--text-light);transition:all .3s;}
+.status-pill.ok{background:#e8f5e9;color:#2e7d32;}
+.status-pill.err{background:#fce4ec;color:#c62828;}
+.status-pill.loading{background:#fff8e1;color:#e65100;}
+.sdot{width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0;}
+.loading .sdot{animation:blink .9s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 
-  /* Upload zone */
-  .upload-zone { border:2px dashed var(--gold-light);border-radius:12px;padding:42px 20px;text-align:center;background:rgba(201,168,76,.03);margin-bottom:28px;transition:all .3s;cursor:pointer;position:relative; }
-  .upload-zone:hover,.upload-zone.drag-over { border-color:var(--gold);background:rgba(201,168,76,.07); }
-  .upload-zone input { position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%; }
-  .upload-icon { font-size:44px;margin-bottom:10px; }
-  .upload-zone h3 { font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--dark);margin-bottom:7px; }
-  .upload-zone p { font-size:11.5px;color:var(--text-light);line-height:1.85; }
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:5px;font-family:'Montserrat',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.7px;text-transform:uppercase;cursor:pointer;border:none;transition:all .2s;}
+.btn-gold{background:var(--gold);color:var(--dark);}
+.btn-gold:hover{background:var(--gold-dark);color:white;}
+.btn-outline{background:transparent;color:var(--gold-dark);border:1px solid var(--gold);}
+.btn-outline:hover{background:var(--gold);color:var(--dark);}
+.btn-danger{background:transparent;color:#c62828;border:1px solid #ef9a9a;}
+.btn-danger:hover{background:#f44336;color:white;border-color:#f44336;}
+.btn-ghost{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2);}
+.btn-ghost:hover{background:rgba(255,255,255,.2);}
+.btn-sm{padding:7px 14px;font-size:10.5px;}
 
-  /* Progress */
-  .upload-progress { background:white;border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-bottom:14px;display:none; }
-  .upload-progress.show { display:block; }
-  .progress-label { font-size:11.5px;color:var(--text-light);margin-bottom:7px;display:flex;justify-content:space-between; }
-  .progress-bar-outer { height:4px;background:#f0e8d8;border-radius:4px;overflow:hidden; }
-  .progress-bar-inner { height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-dark));border-radius:4px;width:0%;transition:width .3s; }
+main{max-width:1200px;margin:0 auto;padding:8px 20px 80px;}
 
-  /* Grid */
-  .photo-grid { columns:4;column-gap:14px; }
-  @media(max-width:900px){.photo-grid{columns:3;}}
-  @media(max-width:600px){.photo-grid{columns:2;}}
-  @media(max-width:380px){.photo-grid{columns:1;}}
-  .photo-card { break-inside:avoid;margin-bottom:14px;position:relative;border-radius:8px;overflow:hidden;background:white;box-shadow:0 2px 10px rgba(0,0,0,.08);transition:transform .2s,box-shadow .2s;cursor:pointer; }
-  .photo-card:hover { transform:translateY(-3px);box-shadow:0 8px 26px rgba(0,0,0,.14); }
-  .photo-card img,.photo-card video { width:100%;display:block; }
-  .photo-card-overlay { position:absolute;inset:0;background:linear-gradient(to top,rgba(26,20,16,.88) 0%,transparent 55%);opacity:0;transition:opacity .2s;display:flex;align-items:flex-end;padding:12px; }
-  .photo-card:hover .photo-card-overlay { opacity:1; }
-  .photo-card-actions { display:flex;gap:7px;width:100%;justify-content:flex-end; }
-  .icon-btn { width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);color:white;font-size:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s; }
-  .icon-btn:hover { background:var(--gold);color:var(--dark);border-color:var(--gold); }
-  .photo-card-name { font-size:10.5px;color:rgba(255,255,255,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1; }
-  .video-badge { position:absolute;top:9px;left:9px;background:rgba(26,20,16,.78);color:var(--gold-light);font-size:9.5px;font-weight:600;letter-spacing:1px;padding:3px 8px;border-radius:20px;text-transform:uppercase; }
+.folders-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;align-items:center;}
+.folder-tab{padding:9px 20px;border:1px solid var(--border);border-radius:40px;background:white;font-family:'Montserrat',sans-serif;font-size:11.5px;font-weight:500;color:var(--text-light);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:7px;}
+.folder-tab:hover{border-color:var(--gold);color:var(--gold-dark);}
+.folder-tab.active{background:var(--gold);border-color:var(--gold);color:var(--dark);font-weight:700;}
+.folder-tab .cnt{background:rgba(0,0,0,.1);border-radius:20px;padding:1px 7px;font-size:9.5px;}
+.add-folder-btn{padding:8px 16px;border:1px dashed var(--border);border-radius:40px;background:transparent;font-size:11px;color:var(--text-light);cursor:pointer;transition:all .2s;font-family:'Montserrat',sans-serif;}
+.add-folder-btn:hover{border-color:var(--gold);color:var(--gold-dark);}
 
-  /* Empty */
-  .empty-state { text-align:center;padding:72px 20px;color:var(--text-light); }
-  .empty-state .empty-icon { font-size:54px;margin-bottom:14px;opacity:.45; }
-  .empty-state h3 { font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--dark);margin-bottom:7px; }
-  .empty-state p { font-size:12.5px;line-height:1.75; }
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:var(--dark);}
+.section-title em{color:var(--gold);font-style:italic;}
+.section-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
 
-  /* Lightbox */
-  .lightbox { position:fixed;inset:0;background:rgba(8,6,4,.96);z-index:9999;display:none;align-items:center;justify-content:center;padding:16px; }
-  .lightbox.open { display:flex; }
-  .lightbox-inner { position:relative;display:flex;flex-direction:column;align-items:center; }
-  .lightbox img,.lightbox video { max-width:88vw;max-height:80vh;border-radius:4px;object-fit:contain; }
-  .lightbox-close { position:fixed;top:18px;right:22px;font-size:30px;color:rgba(255,255,255,.65);cursor:pointer;line-height:1;z-index:10000; }
-  .lightbox-close:hover { color:var(--gold); }
-  .lightbox-actions { display:flex;gap:10px;margin-top:14px; }
-  .lightbox-nav { position:fixed;top:50%;transform:translateY(-50%);font-size:34px;color:rgba(255,255,255,.45);cursor:pointer;padding:10px;transition:color .2s;z-index:10000; }
-  .lightbox-nav:hover { color:var(--gold); }
-  .lightbox-nav.prev { left:14px; }
-  .lightbox-nav.next { right:14px; }
+.fetch-bar{padding:11px 16px;border-radius:7px;font-size:12px;font-weight:500;margin-bottom:16px;display:none;align-items:center;gap:10px;line-height:1.5;}
+.fetch-bar.show{display:flex;}
+.fetch-bar.info{background:#e3f2fd;color:#0d47a1;border:1px solid #90caf9;}
+.fetch-bar.ok{background:#e8f5e9;color:#1b5e20;border:1px solid #a5d6a7;}
+.fetch-bar.err{background:#fce4ec;color:#880e4f;border:1px solid #f48fb1;}
+.spin{display:inline-block;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-  /* Toast */
-  .toast { position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--dark);color:var(--gold-light);padding:11px 22px;border-radius:40px;font-size:12.5px;font-weight:500;z-index:99999;opacity:0;transition:all .3s;white-space:nowrap;border:1px solid rgba(201,168,76,.3); }
-  .toast.show { opacity:1;transform:translateX(-50%) translateY(0); }
+.upload-zone{border:2px dashed var(--gold-light);border-radius:12px;padding:40px 20px;text-align:center;background:rgba(201,168,76,.03);margin-bottom:24px;transition:all .3s;cursor:pointer;position:relative;display:none;}
+.upload-zone:hover,.upload-zone.drag-over{border-color:var(--gold);background:rgba(201,168,76,.07);}
+.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.upload-icon{font-size:40px;margin-bottom:8px;}
+.upload-zone h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--dark);margin-bottom:6px;}
+.upload-zone p{font-size:11.5px;color:var(--text-light);line-height:1.85;}
 
-  /* Modal */
-  .modal-overlay { position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9000;display:none;align-items:center;justify-content:center; }
-  .modal-overlay.open { display:flex; }
-  .modal { background:white;border-radius:12px;padding:28px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.2); }
-  .modal h3 { font-family:'Cormorant Garamond',serif;font-size:1.35rem;margin-bottom:14px; }
-  .modal input { width:100%;padding:9px 12px;border:1px solid #e0d5c5;border-radius:4px;font-family:'Montserrat',sans-serif;font-size:12.5px;margin-bottom:14px; }
-  .modal input:focus { outline:none;border-color:var(--gold); }
-  .modal-actions { display:flex;gap:8px;justify-content:flex-end; }
+.upload-progress{background:white;border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-bottom:14px;display:none;}
+.upload-progress.show{display:block;}
+.progress-label{font-size:11.5px;color:var(--text-light);margin-bottom:7px;display:flex;justify-content:space-between;}
+.progress-bar-outer{height:4px;background:#f0e8d8;border-radius:4px;overflow:hidden;}
+.progress-bar-inner{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-dark));border-radius:4px;width:0%;transition:width .3s;}
 
-  /* No config note */
-  .no-config-note { text-align:center;padding:28px;background:#fff9f0;border:1px dashed var(--gold-light);border-radius:8px;margin-bottom:24px;font-size:12.5px;color:var(--text-light);display:none; }
-  .no-config-note strong { color:var(--gold-dark); }
+.photo-grid{columns:4;column-gap:14px;}
+@media(max-width:900px){.photo-grid{columns:3;}}
+@media(max-width:600px){.photo-grid{columns:2;}}
+@media(max-width:380px){.photo-grid{columns:1;}}
+.photo-card{break-inside:avoid;margin-bottom:14px;position:relative;border-radius:8px;overflow:hidden;background:white;box-shadow:0 2px 10px rgba(0,0,0,.08);transition:transform .2s,box-shadow .2s;cursor:pointer;}
+.photo-card:hover{transform:translateY(-3px);box-shadow:0 8px 26px rgba(0,0,0,.15);}
+.photo-card img,.photo-card video{width:100%;display:block;}
+.photo-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,20,16,.9) 0%,transparent 55%);opacity:0;transition:opacity .2s;display:flex;align-items:flex-end;padding:12px;}
+.photo-card:hover .photo-card-overlay{opacity:1;}
+.photo-card-actions{display:flex;gap:7px;width:100%;justify-content:flex-end;}
+.icon-btn{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);color:white;font-size:13px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;}
+.icon-btn:hover{background:var(--gold);color:var(--dark);border-color:var(--gold);}
+.photo-card-name{font-size:10px;color:rgba(255,255,255,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;}
+.video-badge{position:absolute;top:8px;left:8px;background:rgba(26,20,16,.8);color:var(--gold-light);font-size:9px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:20px;text-transform:uppercase;}
+
+.empty-state{text-align:center;padding:70px 20px;display:none;}
+.empty-icon{font-size:52px;margin-bottom:12px;opacity:.4;}
+.empty-state h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--dark);margin-bottom:6px;}
+.empty-state p{font-size:12.5px;color:var(--text-light);line-height:1.75;}
+
+.lightbox{position:fixed;inset:0;background:rgba(5,3,2,.97);z-index:9999;display:none;align-items:center;justify-content:center;padding:16px;}
+.lightbox.open{display:flex;}
+.lightbox-inner{display:flex;flex-direction:column;align-items:center;}
+.lightbox img,.lightbox video{max-width:90vw;max-height:80vh;border-radius:4px;object-fit:contain;}
+.lb-close{position:fixed;top:16px;right:20px;font-size:32px;color:rgba(255,255,255,.6);cursor:pointer;z-index:10001;}
+.lb-close:hover{color:var(--gold);}
+.lb-nav{position:fixed;top:50%;transform:translateY(-50%);font-size:38px;color:rgba(255,255,255,.4);cursor:pointer;padding:10px;z-index:10001;transition:color .2s;}
+.lb-nav:hover{color:var(--gold);}
+.lb-nav.prev{left:10px;}
+.lb-nav.next{right:10px;}
+.lb-actions{display:flex;gap:10px;margin-top:14px;}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--dark);color:var(--gold-light);padding:11px 22px;border-radius:40px;font-size:12.5px;font-weight:500;z-index:99999;opacity:0;transition:all .3s;white-space:nowrap;border:1px solid rgba(201,168,76,.3);pointer-events:none;max-width:90vw;text-align:center;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9000;display:none;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:white;border-radius:12px;padding:28px;max-width:430px;width:90%;box-shadow:0 24px 60px rgba(0,0,0,.22);}
+.modal h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:14px;}
+.modal input{width:100%;padding:10px 13px;border:1px solid #e0d5c5;border-radius:5px;font-family:'Montserrat',sans-serif;font-size:13px;margin-bottom:14px;}
+.modal input:focus{outline:none;border-color:var(--gold);}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;}
 </style>
 </head>
 <body>
@@ -168,36 +155,57 @@
   </div>
 </header>
 
-<div style="max-width:1200px;margin:0 auto;padding:0 20px;">
+<div class="wrap">
+<div class="config-panel">
+  <h2>☁️ Gallery Setup <span style="font-size:.75rem;color:var(--text-light);font-family:'Montserrat',sans-serif;font-weight:400;">(enter once per device)</span></h2>
+  <p class="config-sub">
+    Images are stored on <strong><a href="https://cloudinary.com/users/register/free" target="_blank">Cloudinary</a></strong> (free, 25 GB) and the image list is synced via <strong><a href="https://jsonbin.io" target="_blank">JSONBin.io</a></strong> (free) — so photos appear on every device automatically. No server needed.
+  </p>
 
-
-
-  <div class="config-panel">
-    <h2>⚙️ Cloudinary Configuration</h2>
-    <div class="config-grid">
-      <div>
-        <label class="cfg-label">Cloud Name *</label>
-        <input class="cfg-input" id="cfg-cloud" type="text" placeholder="e.g. my-gallery-abc">
-      </div>
-      <div>
-        <label class="cfg-label">Upload Preset (Unsigned) *</label>
-        <input class="cfg-input" id="cfg-preset" type="text" placeholder="e.g. graduation_preset">
-      </div>
-      <div>
-        <label class="cfg-label">Gallery Title</label>
-        <input class="cfg-input" id="cfg-title" type="text" placeholder="My Graduation Gallery">
-      </div>
-    </div>
-    <div class="status-row">
-      <button class="btn btn-gold" onclick="saveConfig()">💾 Save &amp; Connect</button>
-      <button class="btn btn-outline" onclick="testConnection()">🔗 Test</button>
-      <span class="cloud-status"><span class="status-dot" id="status-dot"></span><span id="status-text">Not configured</span></span>
+  <div class="steps-box">
+    <h4>One-time setup — 5 minutes</h4>
+    <div class="steps-list">
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Cloudinary:</strong> Sign up free → Dashboard → copy your <strong>Cloud Name</strong> → Settings → Upload → Add preset → set <strong>Unsigned</strong> → copy preset name</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>JSONBin:</strong> Sign up free at <a href="https://jsonbin.io" target="_blank" style="color:var(--gold-dark);font-weight:600">jsonbin.io</a> → click <strong>+ New Bin</strong> → paste this as content: <code style="background:#f0e8d8;padding:1px 4px;border-radius:3px">{"folders":[{"id":"grad2025","name":"🎓 2025 Graduation"},{"id":"grad2026","name":"🎓 2026 Graduation"},{"id":"extras","name":"📷 Extra Memories"}],"media":{"grad2025":[],"grad2026":[],"extras":[]}}</code> → Save → copy the <strong>Bin ID</strong> from the URL</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>JSONBin API Key:</strong> In JSONBin → go to <strong>API Keys</strong> in the menu → create a key → copy it</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Paste all four values below → <strong>Save &amp; Connect</strong>. Done! Same credentials on every device = shared gallery.</div></div>
     </div>
   </div>
 
+  <div class="cfg-grid">
+    <div class="cfg-field">
+      <label>Cloudinary Cloud Name *</label>
+      <input type="text" id="cfg-cloud" placeholder="e.g. my-gallery-abc" spellcheck="false" autocomplete="off">
+      <div class="hint">From your Cloudinary Dashboard homepage</div>
+    </div>
+    <div class="cfg-field">
+      <label>Cloudinary Upload Preset *</label>
+      <input type="text" id="cfg-preset" placeholder="e.g. graduation_preset" spellcheck="false" autocomplete="off">
+      <div class="hint">Settings → Upload → Add upload preset → Unsigned</div>
+    </div>
+    <div class="cfg-field">
+      <label>JSONBin Bin ID *</label>
+      <input type="text" id="cfg-binid" placeholder="e.g. 64f3a1b2c3d4e5f6a7b8c9d0" spellcheck="false" autocomplete="off">
+      <div class="hint">From the bin URL: jsonbin.io/b/<strong>BIN_ID</strong></div>
+    </div>
+    <div class="cfg-field" style="grid-column:1/-1">
+      <label>JSONBin API Key *</label>
+      <input type="password" id="cfg-binkey" placeholder="$2b$10$…" spellcheck="false" autocomplete="off">
+      <div class="hint">JSONBin → API Keys → create a key</div>
+    </div>
+  </div>
+
+  <div class="status-row">
+    <button class="btn btn-gold" onclick="saveConfig()">💾 Save &amp; Connect</button>
+    <button class="btn btn-outline" id="btn-refresh" onclick="loadAllFromBin(true)" style="display:none">🔄 Refresh</button>
+    <div class="status-pill" id="status-pill"><div class="sdot"></div><span id="status-text">Not configured</span></div>
+  </div>
+</div>
 </div>
 
 <main>
+  <div class="fetch-bar" id="fetch-bar"></div>
+
   <div class="folders-nav" id="folders-nav">
     <button class="add-folder-btn" onclick="addFolder()">＋ New Folder</button>
   </div>
@@ -205,58 +213,53 @@
   <div class="section-header">
     <div class="section-title" id="section-title">Select a <em>folder</em></div>
     <div class="section-actions">
+      <span id="sync-ts" style="font-size:10.5px;color:var(--text-light);"></span>
       <button class="btn btn-outline btn-sm" onclick="downloadAll()" id="btn-dl-all" style="display:none">⬇ Download All</button>
       <button class="btn btn-danger btn-sm" onclick="deleteFolder()" id="btn-del-folder" style="display:none">🗑 Delete Folder</button>
     </div>
   </div>
 
-  <div class="no-config-note" id="no-config-note">
-    ⚠️ <strong>Configure Cloudinary above first</strong> to enable uploads. Your images need somewhere to live!
-  </div>
-
-  <div class="upload-zone" id="upload-zone" style="display:none"
-    ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
-    <input type="file" multiple accept="image/*,video/*" onchange="handleFileSelect(event)" id="file-input">
+  <div class="upload-zone" id="upload-zone"
+       ondrop="handleDrop(event)" ondragover="ev(event)" ondragleave="handleDragLeave()">
+    <input type="file" multiple accept="image/*,video/*" onchange="handleFileSelect(event)">
     <div class="upload-icon">📸</div>
     <h3>Drop photos &amp; videos here</h3>
-    <p>or tap to browse from your camera roll or files<br>Supports JPG, PNG, HEIC, GIF, MP4, MOV — any device</p>
+    <p>or tap to browse · JPG, PNG, HEIC, GIF, MP4, MOV · any device</p>
   </div>
 
   <div class="upload-progress" id="upload-progress">
-    <div class="progress-label"><span id="progress-lbl">Uploading…</span><span id="progress-pct">0%</span></div>
-    <div class="progress-bar-outer"><div class="progress-bar-inner" id="progress-bar"></div></div>
+    <div class="progress-label"><span id="prog-lbl">Uploading…</span><span id="prog-pct">0%</span></div>
+    <div class="progress-bar-outer"><div class="progress-bar-inner" id="prog-bar"></div></div>
   </div>
 
   <div class="photo-grid" id="photo-grid"></div>
-  <div class="empty-state" id="empty-state" style="display:none">
+  <div class="empty-state" id="empty-state">
     <div class="empty-icon">🎓</div>
-    <h3>No photos yet</h3>
-    <p>Upload your first graduation memory above.<br>Your images are stored securely in the cloud.</p>
+    <h3>No photos here yet</h3>
+    <p>Upload your first graduation memory using the box above.<br>Photos sync automatically across all your devices.</p>
   </div>
 </main>
 
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" onclick="handleLbClick(event)">
-  <span class="lightbox-close" onclick="closeLightbox()">×</span>
-  <span class="lightbox-nav prev" onclick="lbNav(-1)">‹</span>
-  <span class="lightbox-nav next" onclick="lbNav(1)">›</span>
+<div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLb()">
+  <span class="lb-close" onclick="closeLb()">×</span>
+  <span class="lb-nav prev" onclick="lbNav(-1)">‹</span>
+  <span class="lb-nav next" onclick="lbNav(1)">›</span>
   <div class="lightbox-inner">
     <div id="lb-content"></div>
-    <div class="lightbox-actions">
+    <div class="lb-actions">
       <button class="btn btn-gold btn-sm" onclick="downloadCurrent()">⬇ Download</button>
-      <button class="btn btn-sm" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.2)" onclick="deleteCurrent()">🗑 Remove</button>
+      <button class="btn btn-ghost btn-sm" onclick="removeCurrent()">🗑 Remove</button>
     </div>
   </div>
 </div>
 
-<!-- Add folder modal -->
 <div class="modal-overlay" id="folder-modal" onclick="if(event.target===this)closeModal()">
   <div class="modal">
-    <h3>📁 Create New Folder</h3>
+    <h3>📁 New Folder</h3>
     <input type="text" id="folder-name-input" placeholder="e.g. 2027 Graduation, Family Day…" maxlength="40">
     <div class="modal-actions">
       <button class="btn btn-outline btn-sm" onclick="closeModal()">Cancel</button>
-      <button class="btn btn-gold btn-sm" onclick="confirmAddFolder()">Create Folder</button>
+      <button class="btn btn-gold btn-sm" onclick="confirmAddFolder()">Create</button>
     </div>
   </div>
 </div>
@@ -264,284 +267,381 @@
 <div class="toast" id="toast"></div>
 
 <script>
+// ═══════════════════════════════════════════════════════════════
+//  ARCHITECTURE:
+//  • Cloudinary  → stores the actual image/video files
+//  • JSONBin.io  → stores the gallery index (folders + image URLs)
+//                  as a simple JSON object, readable from any device
+//
+//  Upload flow:  file → Cloudinary → get URL → save URL to JSONBin
+//  Load flow:    fetch JSONBin → get URLs → display images from Cloudinary CDN
+//
+//  This bypasses ALL CORS and auth issues because:
+//  - Cloudinary upload endpoint is public (preset-based)
+//  - JSONBin read/write uses an API key in the header (allowed by JSONBin CORS)
+// ═══════════════════════════════════════════════════════════════
+
 let cfg = {};
-let folders = [];
-let media = {};
+// gallery = { folders:[{id,name}], media:{folderId:[{id,url,thumb,name,type}]} }
+let gallery = { folders:[], media:{} };
 let activeFolder = null;
-let lbItems = [];
-let lbIdx = 0;
+let lbItems = [], lbIdx = 0;
+let isSaving = false;
 
+const DEFAULTS = [
+  { id:'grad2025', name:'🎓 2025 Graduation' },
+  { id:'grad2026', name:'🎓 2026 Graduation' },
+  { id:'extras',   name:'📷 Extra Memories'  },
+];
+
+// ─── INIT ──────────────────────────────────────────────────────
 function init() {
-  try {
-    cfg = JSON.parse(localStorage.getItem('gcfg') || '{}');
-    folders = JSON.parse(localStorage.getItem('gfolders') || '[]');
-    media = JSON.parse(localStorage.getItem('gmedia') || '{}');
-  } catch(e) {}
-
-  if (!folders.length) {
-    folders = [
-      {id:'grad2025',name:'🎓 2025 Graduation'},
-      {id:'grad2026',name:'🎓 2026 Graduation'},
-      {id:'extras',name:'📷 Extra Memories'}
-    ];
-    media = {grad2025:[],grad2026:[],extras:[]};
-    save();
+  try { cfg = JSON.parse(localStorage.getItem('gcfg')||'{}'); } catch(e){ cfg={}; }
+  prefill();
+  if (cfg.cloudName && cfg.preset && cfg.binId && cfg.binKey) {
+    setStatus('loading','Connecting…');
+    document.getElementById('btn-refresh').style.display = 'inline-flex';
+    loadAllFromBin(true);
+  } else {
+    setStatus('none','Fill in credentials above');
+    // Show defaults locally so UI isn't blank
+    gallery.folders = [...DEFAULTS];
+    DEFAULTS.forEach(d=>{ if(!gallery.media[d.id]) gallery.media[d.id]=[]; });
+    renderFolders();
+    setActiveFolder(DEFAULTS[0].id, false);
   }
-
-  if (cfg.cloudName) {
-    document.getElementById('cfg-cloud').value = cfg.cloudName;
-    document.getElementById('cfg-preset').value = cfg.preset || '';
-    document.getElementById('cfg-title').value = cfg.title || '';
-    setStatus(true);
-  }
-  if (cfg.title) document.querySelector('header h1').innerHTML = cfg.title;
-
-  renderFolders();
-  if (folders.length) setActiveFolder(folders[0].id);
 }
 
-function save() {
-  localStorage.setItem('gcfg', JSON.stringify(cfg));
-  localStorage.setItem('gfolders', JSON.stringify(folders));
-  localStorage.setItem('gmedia', JSON.stringify(media));
+function prefill() {
+  if(cfg.cloudName) document.getElementById('cfg-cloud').value  = cfg.cloudName;
+  if(cfg.preset)    document.getElementById('cfg-preset').value = cfg.preset;
+  if(cfg.binId)     document.getElementById('cfg-binid').value  = cfg.binId;
+  if(cfg.binKey)    document.getElementById('cfg-binkey').value = cfg.binKey;
 }
 
-// Config
+// ─── CONFIG ────────────────────────────────────────────────────
 function saveConfig() {
-  const cn = document.getElementById('cfg-cloud').value.trim();
-  const pr = document.getElementById('cfg-preset').value.trim();
-  const title = document.getElementById('cfg-title').value.trim();
-  if (!cn || !pr) { toast('⚠️ Cloud Name and Upload Preset are required'); return; }
-  cfg = {cloudName:cn, preset:pr, title: title || 'My Graduation Gallery'};
-  save();
-  setStatus(true);
-  if (title) document.querySelector('header h1').innerHTML = title;
-  if (activeFolder) showUploadZone();
-  toast('✅ Configuration saved!');
+  const cn  = document.getElementById('cfg-cloud').value.trim();
+  const pr  = document.getElementById('cfg-preset').value.trim();
+  const bid = document.getElementById('cfg-binid').value.trim();
+  const bk  = document.getElementById('cfg-binkey').value.trim();
+  if (!cn||!pr||!bid||!bk) { toast('⚠️ All four fields are required'); return; }
+  cfg = { cloudName:cn, preset:pr, binId:bid, binKey:bk };
+  localStorage.setItem('gcfg', JSON.stringify(cfg));
+  document.getElementById('btn-refresh').style.display = 'inline-flex';
+  setStatus('loading','Connecting to JSONBin…');
+  loadAllFromBin(true);
 }
 
-function testConnection() {
-  const cn = document.getElementById('cfg-cloud').value.trim();
-  if (!cn) { toast('Enter your Cloud Name first'); return; }
-  toast('🔗 Testing connection…');
-  fetch(`https://res.cloudinary.com/${cn}/image/upload/sample.jpg`,{method:'HEAD'})
-    .then(r => { const ok = r.ok || r.status < 500; setStatus(ok); toast(ok ? '✅ Connected to Cloudinary!' : '⚠️ Cloud name may be incorrect'); })
-    .catch(() => { setStatus(false); toast('❌ Could not connect. Check your Cloud Name.'); });
+function setStatus(state,text){
+  const pill=document.getElementById('status-pill');
+  const span=document.getElementById('status-text');
+  pill.className='status-pill'+(state==='ok'?' ok':state==='err'?' err':state==='loading'?' loading':'');
+  span.textContent=text;
 }
 
-function setStatus(ok) {
-  document.getElementById('status-dot').className = 'status-dot '+(ok?'ok':'err');
-  document.getElementById('status-text').textContent = ok ? 'Connected to Cloudinary ✓' : 'Not connected';
+// ─── JSONBIN HELPERS ───────────────────────────────────────────
+const BIN_URL = () => `https://api.jsonbin.io/v3/b/${cfg.binId}`;
+const BIN_HDR = () => ({ 'Content-Type':'application/json', 'X-Master-Key': cfg.binKey });
+
+async function binGet() {
+  const res = await fetch(BIN_URL()+'/latest', { headers:{'X-Master-Key':cfg.binKey} });
+  if (!res.ok) {
+    if (res.status===401) throw new Error('JSONBin API key is incorrect — check and re-save');
+    if (res.status===404) throw new Error('JSONBin Bin ID not found — check and re-save');
+    throw new Error(`JSONBin error ${res.status}`);
+  }
+  const data = await res.json();
+  return data.record; // the actual stored JSON
 }
 
-// Folders
+async function binSet(obj) {
+  const res = await fetch(BIN_URL(), {
+    method:'PUT',
+    headers: BIN_HDR(),
+    body: JSON.stringify(obj)
+  });
+  if (!res.ok) {
+    if (res.status===401) throw new Error('JSONBin API key rejected');
+    throw new Error(`JSONBin save error ${res.status}`);
+  }
+  return res.json();
+}
+
+// ─── LOAD FROM BIN (runs on every device open) ─────────────────
+async function loadAllFromBin(showMsg) {
+  if (!cfg.binId||!cfg.binKey) return;
+  if (showMsg) showBar('info','<span class="spin">⟳</span>&nbsp; Loading gallery from cloud…');
+
+  try {
+    const record = await binGet();
+
+    // If bin is empty or new, initialise it with defaults
+    if (!record || !record.folders) {
+      const fresh = { folders:[...DEFAULTS], media:{} };
+      DEFAULTS.forEach(d=>{ fresh.media[d.id]=[]; });
+      await binSet(fresh);
+      gallery = fresh;
+    } else {
+      gallery = record;
+      // Ensure defaults always present
+      DEFAULTS.forEach(d=>{
+        if (!gallery.folders.find(f=>f.id===d.id)) gallery.folders.unshift(d);
+        if (!gallery.media[d.id]) gallery.media[d.id]=[];
+      });
+    }
+
+    const totalFiles = Object.values(gallery.media).reduce((s,a)=>s+a.length,0);
+    setStatus('ok',`Connected ✓ · ${totalFiles} file${totalFiles!==1?'s':''} total`);
+    document.getElementById('sync-ts').textContent = 'Synced '+new Date().toLocaleTimeString();
+
+    renderFolders();
+    const lastId = localStorage.getItem('gLastFolder')||gallery.folders[0].id;
+    const startId = gallery.folders.find(f=>f.id===lastId) ? lastId : gallery.folders[0].id;
+    setActiveFolder(startId, false);
+
+    if (showMsg) {
+      showBar('ok','✅ Gallery loaded! Upload photos to see them on all devices.');
+      setTimeout(()=>showBar('hide'),3500);
+    } else showBar('hide');
+
+  } catch(err) {
+    setStatus('err','Connection failed');
+    showBar('err','❌ '+err.message);
+    console.error(err);
+  }
+}
+
+// Save entire gallery object back to JSONBin (debounced)
+let saveTimer = null;
+function scheduleSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async ()=>{
+    if (isSaving) return;
+    isSaving = true;
+    try {
+      await binSet(gallery);
+    } catch(e) {
+      toast('⚠️ Could not sync: '+e.message);
+    }
+    isSaving = false;
+  }, 800);
+}
+
+// ─── FOLDERS ───────────────────────────────────────────────────
 function renderFolders() {
-  const nav = document.getElementById('folders-nav');
-  nav.querySelectorAll('.folder-tab').forEach(t=>t.remove());
+  const nav    = document.getElementById('folders-nav');
   const addBtn = nav.querySelector('.add-folder-btn');
-  folders.forEach(f => {
-    const tab = document.createElement('button');
-    tab.className = 'folder-tab'+(activeFolder===f.id?' active':'');
-    const count = (media[f.id]||[]).length;
-    tab.innerHTML = `${f.name} <span class="cnt">${count}</span>`;
-    tab.onclick = () => setActiveFolder(f.id);
-    nav.insertBefore(tab, addBtn);
+  nav.querySelectorAll('.folder-tab').forEach(t=>t.remove());
+  (gallery.folders||[]).forEach(f=>{
+    const btn = document.createElement('button');
+    btn.className = 'folder-tab'+(activeFolder===f.id?' active':'');
+    const count = (gallery.media[f.id]||[]).length;
+    btn.innerHTML = `${f.name}<span class="cnt">${count}</span>`;
+    btn.onclick = ()=>setActiveFolder(f.id,false);
+    nav.insertBefore(btn,addBtn);
   });
 }
 
-function setActiveFolder(id) {
+function setActiveFolder(id,doSync) {
   activeFolder = id;
-  const f = folders.find(x=>x.id===id);
+  localStorage.setItem('gLastFolder',id);
+  const f = (gallery.folders||[]).find(x=>x.id===id);
   document.getElementById('section-title').innerHTML = f ? f.name : 'Gallery';
-  document.getElementById('btn-dl-all').style.display = 'inline-flex';
-  document.getElementById('btn-del-folder').style.display = 'inline-flex';
-  showUploadZone();
+  const isDef = DEFAULTS.find(d=>d.id===id);
+  document.getElementById('btn-dl-all').style.display     = 'inline-flex';
+  document.getElementById('btn-del-folder').style.display = isDef ? 'none' : 'inline-flex';
+  document.getElementById('upload-zone').style.display    = cfg.cloudName&&cfg.preset ? 'block':'none';
   renderFolders();
   renderGrid();
 }
 
-function showUploadZone() {
-  const uz = document.getElementById('upload-zone');
-  const note = document.getElementById('no-config-note');
-  if (cfg.cloudName && cfg.preset) {
-    uz.style.display = 'block';
-    note.style.display = 'none';
-  } else {
-    uz.style.display = 'none';
-    note.style.display = 'block';
-  }
-}
-
 function addFolder() {
-  document.getElementById('folder-name-input').value = '';
+  document.getElementById('folder-name-input').value='';
   document.getElementById('folder-modal').classList.add('open');
-  setTimeout(()=>document.getElementById('folder-name-input').focus(),100);
+  setTimeout(()=>document.getElementById('folder-name-input').focus(),80);
 }
 
 function confirmAddFolder() {
   const name = document.getElementById('folder-name-input').value.trim();
   if (!name) { toast('Enter a folder name'); return; }
   const id = 'f_'+Date.now();
-  folders.push({id,name});
-  media[id]=[];
-  save();
+  if (!gallery.folders) gallery.folders=[];
+  gallery.folders.push({id,name});
+  gallery.media[id]=[];
+  scheduleSave();
   closeModal();
-  setActiveFolder(id);
+  renderFolders();
+  setActiveFolder(id,false);
   toast(`📁 "${name}" created!`);
 }
 
 function deleteFolder() {
-  if (!activeFolder) return;
-  const f = folders.find(x=>x.id===activeFolder);
-  if (!confirm(`Delete folder "${f?.name}"?\n\nImages will be removed from this gallery (they stay on Cloudinary unless deleted there too).`)) return;
-  folders = folders.filter(x=>x.id!==activeFolder);
-  delete media[activeFolder];
-  save();
-  activeFolder = folders[0]?.id||null;
+  if (!activeFolder||DEFAULTS.find(d=>d.id===activeFolder)) { toast('Cannot delete default folders'); return; }
+  const f = gallery.folders.find(x=>x.id===activeFolder);
+  if (!confirm(`Delete folder "${f?.name}"?\n\nImages on Cloudinary are NOT deleted.`)) return;
+  gallery.folders = gallery.folders.filter(x=>x.id!==activeFolder);
+  delete gallery.media[activeFolder];
+  scheduleSave();
+  setActiveFolder(gallery.folders[0].id,false);
   renderFolders();
-  if (activeFolder) setActiveFolder(activeFolder);
-  else { document.getElementById('photo-grid').innerHTML=''; showEmpty(false); document.getElementById('btn-dl-all').style.display='none'; document.getElementById('btn-del-folder').style.display='none'; }
   toast('🗑 Folder deleted');
 }
 
-function closeModal() { document.getElementById('folder-modal').classList.remove('open'); }
+function closeModal(){ document.getElementById('folder-modal').classList.remove('open'); }
 
-// Upload
-function handleDragOver(e){e.preventDefault();document.getElementById('upload-zone').classList.add('drag-over');}
+// ─── UPLOAD ─────────────────────────────────────────────────────
+function ev(e){e.preventDefault();document.getElementById('upload-zone').classList.add('drag-over');}
 function handleDragLeave(){document.getElementById('upload-zone').classList.remove('drag-over');}
 function handleDrop(e){e.preventDefault();document.getElementById('upload-zone').classList.remove('drag-over');uploadFiles(Array.from(e.dataTransfer.files));}
 function handleFileSelect(e){uploadFiles(Array.from(e.target.files));e.target.value='';}
 
 async function uploadFiles(files) {
-  if (!cfg.cloudName||!cfg.preset) { toast('⚠️ Save your Cloudinary config first!'); return; }
-  if (!activeFolder) { toast('Select a folder first'); return; }
+  if (!cfg.cloudName||!cfg.preset) { toast('⚠️ Configure Cloudinary above first'); return; }
+  if (!cfg.binId||!cfg.binKey)     { toast('⚠️ Configure JSONBin above first'); return; }
+  if (!activeFolder)               { toast('Select a folder first'); return; }
   if (!files.length) return;
 
   const prog = document.getElementById('upload-progress');
-  const bar = document.getElementById('progress-bar');
-  const pct = document.getElementById('progress-pct');
-  const lbl = document.getElementById('progress-lbl');
+  const bar  = document.getElementById('prog-bar');
+  const pct  = document.getElementById('prog-pct');
+  const lbl  = document.getElementById('prog-lbl');
   prog.classList.add('show');
 
   let done=0;
   for (const file of files) {
-    lbl.textContent = `Uploading ${file.name}…`;
+    lbl.textContent = `Uploading ${file.name} (${done+1}/${files.length})…`;
     const fd = new FormData();
     fd.append('file', file);
     fd.append('upload_preset', cfg.preset);
-    fd.append('folder', `graduation_gallery/${activeFolder}`);
 
     try {
       const isVideo = file.type.startsWith('video/');
-      const url = `https://api.cloudinary.com/v1_1/${cfg.cloudName}/${isVideo?'video':'image'}/upload`;
-      const res = await fetch(url, {method:'POST',body:fd});
+      const endpoint = `https://api.cloudinary.com/v1_1/${cfg.cloudName}/${isVideo?'video':'image'}/upload`;
+      const res  = await fetch(endpoint,{method:'POST',body:fd});
       const data = await res.json();
+
       if (data.secure_url) {
-        if (!media[activeFolder]) media[activeFolder]=[];
-        const thumb = isVideo
-          ? data.secure_url.replace('/upload/','/upload/w_500,h_400,c_fill,f_jpg/')
-          : data.secure_url.replace('/upload/','/upload/w_500,c_limit,q_auto/');
-        media[activeFolder].push({id:data.public_id,url:data.secure_url,thumb,name:file.name,type:isVideo?'video':'image'});
-        save();
+        const item = makeItem(data, file.name, isVideo);
+        if (!gallery.media[activeFolder]) gallery.media[activeFolder]=[];
+        gallery.media[activeFolder].unshift(item);
         renderGrid();
         renderFolders();
+        // Save to JSONBin so other devices see it
+        await binSet(gallery);
       } else {
         toast(`❌ ${file.name}: ${data.error?.message||'upload failed'}`);
       }
-    } catch(err) {
-      toast(`❌ Upload error: ${err.message}`);
+    } catch(e) {
+      toast(`❌ Upload error: ${e.message}`);
     }
     done++;
     const p=Math.round((done/files.length)*100);
-    bar.style.width=p+'%';
-    pct.textContent=p+'%';
+    bar.style.width=p+'%'; pct.textContent=p+'%';
   }
-
   setTimeout(()=>{prog.classList.remove('show');bar.style.width='0%';},1500);
-  toast(`✅ ${done} file${done>1?'s':''} uploaded!`);
+  toast(`✅ ${done} file${done>1?'s':''} uploaded & synced!`);
+  setStatus('ok',`Connected ✓ · Gallery updated`);
 }
 
-// Grid
-function renderGrid() {
-  const grid = document.getElementById('photo-grid');
-  const items = activeFolder ? (media[activeFolder]||[]) : [];
-  grid.innerHTML='';
-  if (!items.length) { showEmpty(true); return; }
-  showEmpty(false);
-  lbItems=items;
+function makeItem(r, originalName, isVideo) {
+  const cn  = cfg.cloudName;
+  const ext = r.format ? `.${r.format}` : (isVideo?'.mp4':'.jpg');
+  const url = r.secure_url;
+  const thumb = isVideo
+    ? `https://res.cloudinary.com/${cn}/video/upload/w_500,h_380,c_fill,f_jpg,so_1/${r.public_id}.jpg`
+    : `https://res.cloudinary.com/${cn}/image/upload/w_600,c_limit,q_auto,f_auto/${r.public_id}${ext}`;
+  return {
+    id: r.public_id,
+    url,
+    thumb,
+    name: originalName || (r.public_id.split('/').pop()+ext),
+    type: isVideo?'video':'image',
+    ts: Date.now()
+  };
+}
 
+// ─── GRID ──────────────────────────────────────────────────────
+function renderGrid() {
+  const grid  = document.getElementById('photo-grid');
+  const items = (gallery.media&&gallery.media[activeFolder])||[];
+  grid.innerHTML='';
+  document.getElementById('empty-state').style.display = items.length?'none':'block';
+  if (!items.length) return;
+  lbItems = items;
   items.forEach((item,idx)=>{
     const card = document.createElement('div');
     card.className='photo-card';
-    card.onclick = e => { if(!e.target.closest('.icon-btn')) openLightbox(idx); };
-
+    card.onclick = e=>{ if(!e.target.closest('.icon-btn')) openLb(idx); };
+    const su=item.url.replace(/'/g,"\\'"), sn=item.name.replace(/'/g,"\\'"), si=item.id.replace(/'/g,"\\'");
     const mediaEl = item.type==='video'
       ? `<video src="${item.url}" muted playsinline preload="metadata"></video><div class="video-badge">▶ Video</div>`
-      : `<img src="${item.thumb}" alt="${item.name}" loading="lazy">`;
-
+      : `<img src="${item.thumb}" alt="${item.name}" loading="lazy" onerror="this.src='${item.url}'">`;
     card.innerHTML=`${mediaEl}
       <div class="photo-card-overlay">
         <span class="photo-card-name">${item.name}</span>
         <div class="photo-card-actions">
-          <div class="icon-btn" title="Download" onclick="dlItem('${item.url}','${item.name}')">⬇</div>
-          <div class="icon-btn" title="Remove" onclick="removeItem('${item.id}','${activeFolder}')">🗑</div>
+          <div class="icon-btn" title="Download" onclick="dlItem('${su}','${sn}')">⬇</div>
+          <div class="icon-btn" title="Remove" onclick="removeItem('${si}')">🗑</div>
         </div>
       </div>`;
     grid.appendChild(card);
   });
 }
 
-function showEmpty(yes){ document.getElementById('empty-state').style.display=yes?'block':'none'; }
-
-// Lightbox
-function openLightbox(idx){lbIdx=idx;renderLb();document.getElementById('lightbox').classList.add('open');document.addEventListener('keydown',lbKey);}
-function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.removeEventListener('keydown',lbKey);}
-function handleLbClick(e){if(e.target===e.currentTarget)closeLightbox();}
-function lbKey(e){if(e.key==='Escape')closeLightbox();if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);}
+// ─── LIGHTBOX ──────────────────────────────────────────────────
+function openLb(idx){lbIdx=idx;renderLb();document.getElementById('lightbox').classList.add('open');document.addEventListener('keydown',lbKey);}
+function closeLb(){document.getElementById('lightbox').classList.remove('open');document.removeEventListener('keydown',lbKey);}
+function lbKey(e){if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);}
 function lbNav(dir){lbIdx=(lbIdx+dir+lbItems.length)%lbItems.length;renderLb();}
 function renderLb(){
-  const item=lbItems[lbIdx];if(!item)return;
-  const c=document.getElementById('lb-content');
-  c.innerHTML=item.type==='video'
-    ?`<video src="${item.url}" controls style="max-width:88vw;max-height:78vh;border-radius:4px"></video>`
-    :`<img src="${item.url}" style="max-width:88vw;max-height:78vh;border-radius:4px;object-fit:contain" alt="${item.name}">`;
+  const item=lbItems[lbIdx]; if(!item)return;
+  document.getElementById('lb-content').innerHTML = item.type==='video'
+    ?`<video src="${item.url}" controls style="max-width:90vw;max-height:78vh;border-radius:4px"></video>`
+    :`<img src="${item.url}" style="max-width:90vw;max-height:78vh;border-radius:4px;object-fit:contain">`;
 }
 function downloadCurrent(){const i=lbItems[lbIdx];if(i)dlItem(i.url,i.name);}
-function deleteCurrent(){const i=lbItems[lbIdx];if(i){closeLightbox();removeItem(i.id,activeFolder);}}
+function removeCurrent(){const i=lbItems[lbIdx];if(i){closeLb();removeItem(i.id);}}
 
-// Actions
+// ─── ACTIONS ───────────────────────────────────────────────────
 function dlItem(url,name){
   const a=document.createElement('a');a.href=url;a.download=name;a.target='_blank';a.click();
   toast('⬇ Downloading…');
 }
-
 async function downloadAll(){
-  const items=media[activeFolder]||[];
+  const items=(gallery.media&&gallery.media[activeFolder])||[];
   if(!items.length){toast('No files in this folder');return;}
-  toast(`⬇ Downloading ${Math.min(items.length,15)} files…`);
-  for(let i=0;i<Math.min(items.length,15);i++){
-    await new Promise(r=>setTimeout(r,350));
-    dlItem(items[i].url,items[i].name);
-  }
-  if(items.length>15)toast('Tip: Browser limits bulk downloads — remaining files available via Cloudinary dashboard');
+  const lim=Math.min(items.length,15);
+  toast(`⬇ Starting ${lim} download${lim>1?'s':''}…`);
+  for(let i=0;i<lim;i++){await new Promise(r=>setTimeout(r,380));dlItem(items[i].url,items[i].name);}
+  if(items.length>15) toast('Visit Cloudinary Media Library to bulk-download the rest');
 }
 
-function removeItem(id,fId){
-  if(!confirm('Remove from gallery?\n(File stays on Cloudinary unless deleted there too)'))return;
-  media[fId]=(media[fId]||[]).filter(x=>x.id!==id);
-  save();renderGrid();renderFolders();
-  toast('🗑 Removed from gallery');
+function removeItem(id){
+  if(!confirm('Remove from gallery?\n(Image stays on Cloudinary. Remove it there too if needed.)')) return;
+  gallery.media[activeFolder]=(gallery.media[activeFolder]||[]).filter(x=>x.id!==id);
+  scheduleSave();
+  renderGrid();
+  renderFolders();
+  toast('🗑 Removed');
 }
 
-// Toast
+// ─── UI HELPERS ────────────────────────────────────────────────
+function showBar(type,html){
+  const bar=document.getElementById('fetch-bar');
+  bar.className='fetch-bar';
+  if(type==='hide'){bar.classList.remove('show');return;}
+  bar.classList.add('show',type);
+  bar.innerHTML=html||'';
+}
+
 let toastT;
 function toast(msg){
   const el=document.getElementById('toast');
   el.textContent=msg;el.classList.add('show');
-  clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),3200);
+  clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),3500);
 }
 
-// Keyboard
 document.addEventListener('keydown',e=>{
   if(e.key==='Enter'&&document.getElementById('folder-modal').classList.contains('open'))confirmAddFolder();
   if(e.key==='Escape')closeModal();
@@ -549,5 +649,5 @@ document.addEventListener('keydown',e=>{
 
 init();
 </script>
-</body>
+</body>  
 </html>
