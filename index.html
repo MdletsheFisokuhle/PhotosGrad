@@ -11,6 +11,10 @@
 body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.3;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");}
 
+<<<<<<< HEAD
+=======
+/* HEADER */
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
 header{background:var(--dark);position:relative;overflow:hidden;}
 header::before{content:'';position:absolute;top:-40%;left:-10%;width:50%;height:180%;background:radial-gradient(ellipse,rgba(201,168,76,.1) 0%,transparent 70%);pointer-events:none;}
 .header-inner{max-width:1200px;margin:0 auto;padding:44px 32px 36px;text-align:center;position:relative;}
@@ -20,6 +24,7 @@ header h1 span{color:var(--gold);font-style:italic;}
 .header-sub{font-size:11px;color:rgba(245,237,216,.4);letter-spacing:4px;text-transform:uppercase;margin-bottom:30px;}
 .gold-line{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto;}
 
+<<<<<<< HEAD
 .wrap{max-width:1200px;margin:0 auto;padding:0 20px;}
 
 /* CONFIG PANEL */
@@ -142,6 +147,145 @@ main{max-width:1200px;margin:0 auto;padding:8px 20px 80px;}
 .modal input{width:100%;padding:10px 13px;border:1px solid #e0d5c5;border-radius:5px;font-family:'Montserrat',sans-serif;font-size:13px;margin-bottom:14px;}
 .modal input:focus{outline:none;border-color:var(--gold);}
 .modal-actions{display:flex;gap:8px;justify-content:flex-end;}
+=======
+/* CONFIG PANEL */
+.config-panel{background:white;border:1px solid var(--border);border-radius:8px;padding:24px;max-width:960px;margin:28px auto;box-shadow:0 2px 18px rgba(0,0,0,.06);}
+.config-panel h2{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--dark);margin-bottom:6px;}
+.config-panel .subtitle{font-size:11.5px;color:var(--text-light);margin-bottom:18px;line-height:1.6;}
+.config-panel .subtitle a{color:var(--gold-dark);font-weight:600;text-decoration:none;}
+.config-panel .subtitle a:hover{text-decoration:underline;}
+.config-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px;}
+@media(max-width:680px){.config-grid{grid-template-columns:1fr;}}
+.cfg-label{display:block;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:5px;font-weight:500;}
+.cfg-input{width:100%;padding:9px 12px;border:1px solid #e0d5c5;border-radius:4px;font-family:'Montserrat',sans-serif;font-size:12.5px;color:var(--dark);background:#fdfaf5;transition:border-color .2s;}
+.cfg-input:focus{outline:none;border-color:var(--gold);background:white;}
+.cfg-input[readonly]{background:#f5f0e8;cursor:default;color:var(--text-light);}
+.status-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.status-dot{width:8px;height:8px;border-radius:50%;background:#ccc;display:inline-block;margin-right:5px;}
+.status-dot.ok{background:#4caf50;}
+.status-dot.err{background:#f44336;}
+.status-dot.loading{background:var(--gold);animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+.cloud-status{font-size:11px;color:var(--text-light);display:flex;align-items:center;}
+
+/* STEPS */
+.steps-row{display:flex;flex-wrap:wrap;gap:4px;margin:12px 0 0;padding:14px;background:#fdfaf5;border-radius:6px;border:1px solid var(--border);}
+.steps-row h4{width:100%;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:8px;}
+.step{display:flex;align-items:flex-start;gap:8px;flex:1;min-width:180px;padding:4px 10px 4px 0;}
+.step-num{width:20px;height:20px;border-radius:50%;background:var(--gold);color:var(--dark);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.step-text{font-size:11px;color:var(--text-light);line-height:1.65;}
+.step-text strong{color:var(--dark);}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:4px;font-family:'Montserrat',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;border:none;transition:all .2s;}
+.btn-gold{background:var(--gold);color:var(--dark);}
+.btn-gold:hover{background:var(--gold-dark);color:white;}
+.btn-outline{background:transparent;color:var(--gold-dark);border:1px solid var(--gold);}
+.btn-outline:hover{background:var(--gold);color:var(--dark);}
+.btn-dark{background:var(--dark);color:var(--gold-light);}
+.btn-dark:hover{background:var(--dark2);}
+.btn-danger{background:transparent;color:#c62828;border:1px solid #f44336;}
+.btn-danger:hover{background:#f44336;color:white;}
+.btn-sm{padding:7px 14px;font-size:10.5px;}
+button:disabled{opacity:.5;cursor:not-allowed;}
+
+/* MAIN */
+main{max-width:1200px;margin:0 auto;padding:20px 20px 80px;}
+
+/* FOLDER NAV */
+.folders-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;align-items:center;}
+.folder-tab{padding:9px 20px;border:1px solid var(--border);border-radius:40px;background:white;font-family:'Montserrat',sans-serif;font-size:11.5px;font-weight:500;color:var(--text-light);cursor:pointer;transition:all .2s;letter-spacing:.4px;display:inline-flex;align-items:center;gap:7px;}
+.folder-tab:hover{border-color:var(--gold);color:var(--gold-dark);}
+.folder-tab.active{background:var(--gold);border-color:var(--gold);color:var(--dark);font-weight:600;}
+.folder-tab .cnt{background:rgba(0,0,0,.1);border-radius:20px;padding:1px 7px;font-size:9.5px;}
+.add-folder-btn{padding:8px 16px;border:1px dashed var(--border);border-radius:40px;background:transparent;font-size:11.5px;color:var(--text-light);cursor:pointer;transition:all .2s;font-family:'Montserrat',sans-serif;}
+.add-folder-btn:hover{border-color:var(--gold);color:var(--gold-dark);}
+
+/* SECTION HEADER */
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:400;color:var(--dark);}
+.section-title em{color:var(--gold);font-style:italic;}
+.section-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+
+/* UPLOAD ZONE */
+.upload-zone{border:2px dashed var(--gold-light);border-radius:12px;padding:42px 20px;text-align:center;background:rgba(201,168,76,.03);margin-bottom:28px;transition:all .3s;cursor:pointer;position:relative;display:none;}
+.upload-zone:hover,.upload-zone.drag-over{border-color:var(--gold);background:rgba(201,168,76,.07);}
+.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.upload-icon{font-size:44px;margin-bottom:10px;}
+.upload-zone h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--dark);margin-bottom:7px;}
+.upload-zone p{font-size:11.5px;color:var(--text-light);line-height:1.85;}
+
+/* PROGRESS */
+.upload-progress{background:white;border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-bottom:14px;display:none;}
+.upload-progress.show{display:block;}
+.progress-label{font-size:11.5px;color:var(--text-light);margin-bottom:7px;display:flex;justify-content:space-between;}
+.progress-bar-outer{height:4px;background:#f0e8d8;border-radius:4px;overflow:hidden;}
+.progress-bar-inner{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-dark));border-radius:4px;width:0%;transition:width .3s;}
+
+/* LOADING SKELETON */
+.skeleton-grid{columns:4;column-gap:14px;}
+@media(max-width:900px){.skeleton-grid{columns:3;}}
+@media(max-width:600px){.skeleton-grid{columns:2;}}
+.skeleton-card{break-inside:avoid;margin-bottom:14px;border-radius:8px;overflow:hidden;background:#f0e8d8;animation:shimmer 1.5s infinite;}
+@keyframes shimmer{0%,100%{opacity:.6;}50%{opacity:1;}}
+
+/* GRID */
+.photo-grid{columns:4;column-gap:14px;}
+@media(max-width:900px){.photo-grid{columns:3;}}
+@media(max-width:600px){.photo-grid{columns:2;}}
+@media(max-width:380px){.photo-grid{columns:1;}}
+.photo-card{break-inside:avoid;margin-bottom:14px;position:relative;border-radius:8px;overflow:hidden;background:white;box-shadow:0 2px 10px rgba(0,0,0,.08);transition:transform .2s,box-shadow .2s;cursor:pointer;}
+.photo-card:hover{transform:translateY(-3px);box-shadow:0 8px 26px rgba(0,0,0,.14);}
+.photo-card img,.photo-card video{width:100%;display:block;}
+.photo-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,20,16,.88) 0%,transparent 55%);opacity:0;transition:opacity .2s;display:flex;align-items:flex-end;padding:12px;}
+.photo-card:hover .photo-card-overlay{opacity:1;}
+.photo-card-actions{display:flex;gap:7px;width:100%;justify-content:flex-end;}
+.icon-btn{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);color:white;font-size:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;}
+.icon-btn:hover{background:var(--gold);color:var(--dark);border-color:var(--gold);}
+.photo-card-name{font-size:10.5px;color:rgba(255,255,255,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;}
+.video-badge{position:absolute;top:9px;left:9px;background:rgba(26,20,16,.78);color:var(--gold-light);font-size:9.5px;font-weight:600;letter-spacing:1px;padding:3px 8px;border-radius:20px;text-transform:uppercase;}
+
+/* EMPTY / ERROR */
+.empty-state{text-align:center;padding:72px 20px;color:var(--text-light);display:none;}
+.empty-state .empty-icon{font-size:54px;margin-bottom:14px;opacity:.45;}
+.empty-state h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--dark);margin-bottom:7px;}
+.empty-state p{font-size:12.5px;line-height:1.75;}
+
+/* CLOUD FETCH BANNER */
+.fetch-banner{display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:12px 18px;margin-bottom:18px;font-size:12px;color:#1b5e20;align-items:center;gap:10px;}
+.fetch-banner.show{display:flex;}
+.fetch-banner.error{background:#fce4ec;border-color:#f48fb1;color:#880e4f;}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(8,6,4,.96);z-index:9999;display:none;align-items:center;justify-content:center;padding:16px;}
+.lightbox.open{display:flex;}
+.lightbox-inner{position:relative;display:flex;flex-direction:column;align-items:center;}
+.lightbox img,.lightbox video{max-width:88vw;max-height:80vh;border-radius:4px;object-fit:contain;}
+.lightbox-close{position:fixed;top:18px;right:22px;font-size:30px;color:rgba(255,255,255,.65);cursor:pointer;line-height:1;z-index:10000;}
+.lightbox-close:hover{color:var(--gold);}
+.lightbox-actions{display:flex;gap:10px;margin-top:14px;}
+.lightbox-nav{position:fixed;top:50%;transform:translateY(-50%);font-size:34px;color:rgba(255,255,255,.45);cursor:pointer;padding:10px;transition:color .2s;z-index:10000;}
+.lightbox-nav:hover{color:var(--gold);}
+.lightbox-nav.prev{left:14px;}
+.lightbox-nav.next{right:14px;}
+
+/* TOAST */
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--dark);color:var(--gold-light);padding:11px 22px;border-radius:40px;font-size:12.5px;font-weight:500;z-index:99999;opacity:0;transition:all .3s;white-space:nowrap;border:1px solid rgba(201,168,76,.3);pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9000;display:none;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:white;border-radius:12px;padding:28px;max-width:440px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.2);}
+.modal h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;margin-bottom:14px;}
+.modal input{width:100%;padding:9px 12px;border:1px solid #e0d5c5;border-radius:4px;font-family:'Montserrat',sans-serif;font-size:12.5px;margin-bottom:14px;}
+.modal input:focus{outline:none;border-color:var(--gold);}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;}
+
+/* FETCH INFO BAR */
+.info-bar{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text-light);margin-left:auto;}
+.info-bar span{display:flex;align-items:center;gap:4px;}
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
 </style>
 </head>
 <body>
@@ -155,6 +299,7 @@ main{max-width:1200px;margin:0 auto;padding:8px 20px 80px;}
   </div>
 </header>
 
+<<<<<<< HEAD
 <div class="wrap">
 <div class="config-panel">
   <h2>☁️ Gallery Setup <span style="font-size:.75rem;color:var(--text-light);font-family:'Montserrat',sans-serif;font-weight:400;">(enter once per device)</span></h2>
@@ -169,9 +314,36 @@ main{max-width:1200px;margin:0 auto;padding:8px 20px 80px;}
       <div class="step"><div class="step-num">2</div><div class="step-text"><strong>JSONBin:</strong> Sign up free at <a href="https://jsonbin.io" target="_blank" style="color:var(--gold-dark);font-weight:600">jsonbin.io</a> → click <strong>+ New Bin</strong> → paste this as content: <code style="background:#f0e8d8;padding:1px 4px;border-radius:3px">{"folders":[{"id":"grad2025","name":"🎓 2025 Graduation"},{"id":"grad2026","name":"🎓 2026 Graduation"},{"id":"extras","name":"📷 Extra Memories"}],"media":{"grad2025":[],"grad2026":[],"extras":[]}}</code> → Save → copy the <strong>Bin ID</strong> from the URL</div></div>
       <div class="step"><div class="step-num">3</div><div class="step-text"><strong>JSONBin API Key:</strong> In JSONBin → go to <strong>API Keys</strong> in the menu → create a key → copy it</div></div>
       <div class="step"><div class="step-num">4</div><div class="step-text">Paste all four values below → <strong>Save &amp; Connect</strong>. Done! Same credentials on every device = shared gallery.</div></div>
+=======
+<div style="max-width:1200px;margin:0 auto;padding:0 20px;">
+  <div class="config-panel">
+    <h2>☁️ Cloudinary Configuration</h2>
+    <p class="subtitle">
+      Enter your credentials once — they are saved in this browser and the gallery will <strong>fetch all images live from Cloudinary</strong> on any device you configure.
+      Don't have an account? <a href="https://cloudinary.com/users/register/free" target="_blank">Sign up free at cloudinary.com</a> (25 GB free forever).
+    </p>
+    <div class="config-grid">
+      <div>
+        <label class="cfg-label">Cloud Name *</label>
+        <input class="cfg-input" id="cfg-cloud" type="text" placeholder="e.g. my-graduation-abc" autocomplete="off">
+      </div>
+      <div>
+        <label class="cfg-label">API Key *</label>
+        <input class="cfg-input" id="cfg-apikey" type="text" placeholder="e.g. 123456789012345" autocomplete="off">
+      </div>
+      <div>
+        <label class="cfg-label">Upload Preset (Unsigned) *</label>
+        <input class="cfg-input" id="cfg-preset" type="text" placeholder="e.g. graduation_preset" autocomplete="off">
+      </div>
     </div>
-  </div>
+    <div class="status-row">
+      <button class="btn btn-gold" onclick="saveConfig()">💾 Save &amp; Connect</button>
+      <button class="btn btn-outline" onclick="syncFromCloud(true)" id="btn-sync">🔄 Sync from Cloud</button>
+      <span class="cloud-status"><span class="status-dot" id="status-dot"></span><span id="status-text">Not configured</span></span>
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
+    </div>
 
+<<<<<<< HEAD
   <div class="cfg-grid">
     <div class="cfg-field">
       <label>Cloudinary Cloud Name *</label>
@@ -206,35 +378,72 @@ main{max-width:1200px;margin:0 auto;padding:8px 20px 80px;}
 <main>
   <div class="fetch-bar" id="fetch-bar"></div>
 
+=======
+    <div class="steps-row">
+      <h4>First time? Follow these steps:</h4>
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Sign up free</strong> at <a href="https://cloudinary.com/users/register/free" target="_blank" style="color:var(--gold-dark);font-weight:600">cloudinary.com</a></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Dashboard → copy your <strong>Cloud Name</strong> and <strong>API Key</strong></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Settings → Upload → <strong>Add upload preset</strong> → set to <strong>Unsigned</strong> → Save</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Paste all three above → <strong>Save &amp; Connect</strong>. Done! Images sync automatically.</div></div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- Fetch status banner -->
+  <div class="fetch-banner" id="fetch-banner">
+    <span id="fetch-banner-text">Fetching images from Cloudinary…</span>
+  </div>
+
+  <!-- Folder nav -->
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
   <div class="folders-nav" id="folders-nav">
     <button class="add-folder-btn" onclick="addFolder()">＋ New Folder</button>
   </div>
 
+  <!-- Section header -->
   <div class="section-header">
     <div class="section-title" id="section-title">Select a <em>folder</em></div>
     <div class="section-actions">
+<<<<<<< HEAD
       <span id="sync-ts" style="font-size:10.5px;color:var(--text-light);"></span>
+=======
+      <div class="info-bar" id="info-bar" style="display:none">
+        <span id="sync-time"></span>
+        <button class="btn btn-outline btn-sm" onclick="syncFromCloud(true)" title="Reload from Cloudinary">🔄 Refresh</button>
+      </div>
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
       <button class="btn btn-outline btn-sm" onclick="downloadAll()" id="btn-dl-all" style="display:none">⬇ Download All</button>
       <button class="btn btn-danger btn-sm" onclick="deleteFolder()" id="btn-del-folder" style="display:none">🗑 Delete Folder</button>
     </div>
   </div>
 
+<<<<<<< HEAD
   <div class="upload-zone" id="upload-zone"
        ondrop="handleDrop(event)" ondragover="ev(event)" ondragleave="handleDragLeave()">
     <input type="file" multiple accept="image/*,video/*" onchange="handleFileSelect(event)">
+=======
+  <!-- Upload zone -->
+  <div class="upload-zone" id="upload-zone"
+    ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+    <input type="file" multiple accept="image/*,video/*" onchange="handleFileSelect(event)" id="file-input">
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
     <div class="upload-icon">📸</div>
     <h3>Drop photos &amp; videos here</h3>
     <p>or tap to browse · JPG, PNG, HEIC, GIF, MP4, MOV · any device</p>
   </div>
 
+  <!-- Upload progress -->
   <div class="upload-progress" id="upload-progress">
     <div class="progress-label"><span id="prog-lbl">Uploading…</span><span id="prog-pct">0%</span></div>
     <div class="progress-bar-outer"><div class="progress-bar-inner" id="prog-bar"></div></div>
   </div>
 
+  <!-- Grid -->
   <div class="photo-grid" id="photo-grid"></div>
   <div class="empty-state" id="empty-state">
     <div class="empty-icon">🎓</div>
+<<<<<<< HEAD
     <h3>No photos here yet</h3>
     <p>Upload your first graduation memory using the box above.<br>Photos sync automatically across all your devices.</p>
   </div>
@@ -244,6 +453,18 @@ main{max-width:1200px;margin:0 auto;padding:8px 20px 80px;}
   <span class="lb-close" onclick="closeLb()">×</span>
   <span class="lb-nav prev" onclick="lbNav(-1)">‹</span>
   <span class="lb-nav next" onclick="lbNav(1)">›</span>
+=======
+    <h3>No photos yet</h3>
+    <p>Upload your first graduation memory above.<br>Images are fetched live from Cloudinary — visible on any device.</p>
+  </div>
+</main>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">×</span>
+  <span class="lightbox-nav prev" onclick="lbNav(-1)">‹</span>
+  <span class="lightbox-nav next" onclick="lbNav(1)">›</span>
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
   <div class="lightbox-inner">
     <div id="lb-content"></div>
     <div class="lb-actions">
@@ -267,6 +488,7 @@ main{max-width:1200px;margin:0 auto;padding:8px 20px 80px;}
 <div class="toast" id="toast"></div>
 
 <script>
+<<<<<<< HEAD
 // ═══════════════════════════════════════════════════════════════
 //  ARCHITECTURE:
 //  • Cloudinary  → stores the actual image/video files
@@ -284,10 +506,23 @@ main{max-width:1200px;margin:0 auto;padding:8px 20px 80px;}
 let cfg = {};
 // gallery = { folders:[{id,name}], media:{folderId:[{id,url,thumb,name,type}]} }
 let gallery = { folders:[], media:{} };
+=======
+// ════════════════════════════════════════════════
+//  CONFIGURATION — saved in localStorage so it
+//  persists on THIS device. On a NEW device just
+//  enter credentials once and all images load
+//  live from Cloudinary.
+// ════════════════════════════════════════════════
+
+let cfg = {};          // { cloudName, apiKey, preset }
+let folders = [];      // [ { id, name, cloudFolder } ]
+let media = {};        // { folderId: [ item... ] }  — populated from Cloudinary
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
 let activeFolder = null;
 let lbItems = [], lbIdx = 0;
 let isSaving = false;
 
+<<<<<<< HEAD
 const DEFAULTS = [
   { id:'grad2025', name:'🎓 2025 Graduation' },
   { id:'grad2026', name:'🎓 2026 Graduation' },
@@ -456,15 +691,276 @@ function setActiveFolder(id,doSync) {
   renderGrid();
 }
 
+=======
+// ── Default folder definitions (always present) ─
+const DEFAULT_FOLDERS = [
+  { id: 'grad2025', name: '🎓 2025 Graduation', cloudFolder: 'graduation_gallery/grad2025' },
+  { id: 'grad2026', name: '🎓 2026 Graduation', cloudFolder: 'graduation_gallery/grad2026' },
+  { id: 'extras',   name: '📷 Extra Memories',  cloudFolder: 'graduation_gallery/extras'   },
+];
+
+// ════════════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════════════
+function init() {
+  // Load saved config
+  try { cfg = JSON.parse(localStorage.getItem('gcfg') || '{}'); } catch(e) { cfg = {}; }
+
+  // Load saved custom folders (merged with defaults)
+  let savedFolders = [];
+  try { savedFolders = JSON.parse(localStorage.getItem('gfolders') || '[]'); } catch(e) {}
+
+  // Merge: keep defaults + any user-added folders
+  const defaultIds = DEFAULT_FOLDERS.map(f => f.id);
+  const extras = savedFolders.filter(f => !defaultIds.includes(f.id));
+  folders = [...DEFAULT_FOLDERS, ...extras];
+
+  // Prefill config inputs
+  if (cfg.cloudName) document.getElementById('cfg-cloud').value  = cfg.cloudName;
+  if (cfg.apiKey)    document.getElementById('cfg-apikey').value = cfg.apiKey;
+  if (cfg.preset)    document.getElementById('cfg-preset').value = cfg.preset;
+
+  renderFolders();
+
+  if (cfg.cloudName && cfg.preset) {
+    setStatus('loading', 'Connecting…');
+    // Load folder that was last active, or first
+    let lastActive = localStorage.getItem('gLastFolder') || folders[0].id;
+    if (!folders.find(f => f.id === lastActive)) lastActive = folders[0].id;
+    setActiveFolder(lastActive, true); // true = trigger cloud sync
+  } else {
+    setStatus('none', 'Not configured');
+    setActiveFolder(folders[0].id, false);
+  }
+}
+
+// ════════════════════════════════════════════════
+//  CONFIG
+// ════════════════════════════════════════════════
+function saveConfig() {
+  const cn = document.getElementById('cfg-cloud').value.trim();
+  const ak = document.getElementById('cfg-apikey').value.trim();
+  const pr = document.getElementById('cfg-preset').value.trim();
+  if (!cn || !pr) { toast('⚠️ Cloud Name and Upload Preset are required'); return; }
+  cfg = { cloudName: cn, apiKey: ak, preset: pr };
+  localStorage.setItem('gcfg', JSON.stringify(cfg));
+  setStatus('loading', 'Connecting…');
+  syncFromCloud(true);
+}
+
+function setStatus(state, text) {
+  const dot  = document.getElementById('status-dot');
+  const span = document.getElementById('status-text');
+  dot.className = 'status-dot' + (state === 'ok' ? ' ok' : state === 'err' ? ' err' : state === 'loading' ? ' loading' : '');
+  span.textContent = text;
+}
+
+// ════════════════════════════════════════════════
+//  CLOUD SYNC — fetch from Cloudinary Search API
+//  Uses signed API call via your API Key + secret.
+//  Since we can't expose secret client-side safely,
+//  we use the PUBLIC resource list endpoint instead:
+//  GET https://res.cloudinary.com/<cloud>/image/list/<tag>.json
+//  — or — list by folder prefix (no auth needed for public assets).
+//
+//  Strategy: We fetch the folder's resources using
+//  Cloudinary's Search API via an unsigned approach:
+//  list all assets in the upload folder path by using
+//  the resource list by prefix endpoint.
+// ════════════════════════════════════════════════
+async function syncFromCloud(showBanner) {
+  if (!cfg.cloudName) return;
+  if (!activeFolder) return;
+
+  const folder = folders.find(f => f.id === activeFolder);
+  if (!folder) return;
+
+  if (showBanner) showFetchBanner(true, false, `Fetching from Cloudinary folder "${folder.name}"…`);
+
+  try {
+    const items = await fetchFolderResources(folder.cloudFolder);
+    media[activeFolder] = items;
+    renderGrid();
+    renderFolders();
+
+    const t = new Date().toLocaleTimeString();
+    document.getElementById('sync-time').textContent = `Last synced: ${t}`;
+    document.getElementById('info-bar').style.display = 'flex';
+
+    setStatus('ok', `Connected ✓ (${items.length} file${items.length!==1?'s':''})`);
+    showFetchBanner(false);
+
+    if (showBanner && items.length === 0) {
+      showFetchBanner(true, false, '✅ Connected! No images in this folder yet — upload some above.');
+      setTimeout(() => showFetchBanner(false), 4000);
+    }
+  } catch(err) {
+    setStatus('err', 'Fetch failed');
+    showFetchBanner(true, true, `❌ Could not load images: ${err.message}`);
+    console.error(err);
+  }
+}
+
+// Fetch all resources in a Cloudinary folder using the
+// resource list endpoint (works without secret for public clouds)
+async function fetchFolderResources(cloudFolder) {
+  const cn = cfg.cloudName;
+  const allItems = [];
+
+  // Fetch images
+  let imgCursor = null;
+  do {
+    const params = new URLSearchParams({
+      asset_folder: cloudFolder,
+      max_results: 100,
+      resource_type: 'image',
+    });
+    if (imgCursor) params.set('next_cursor', imgCursor);
+
+    // Use unsigned list endpoint — works when assets are public
+    const url = `https://api.cloudinary.com/v1_1/${cn}/resources/by_asset_folder?${params}`;
+    const res = await fetch(url, {
+      headers: cfg.apiKey ? { 'Authorization': `Basic ${btoa(cfg.apiKey + ':')}` } : {}
+    });
+
+    if (!res.ok) {
+      // Fallback: try search by prefix
+      return await fetchByPrefix(cloudFolder);
+    }
+
+    const data = await res.json();
+    (data.resources || []).forEach(r => {
+      allItems.push(buildItem(r, 'image'));
+    });
+    imgCursor = data.next_cursor || null;
+  } while (imgCursor);
+
+  // Fetch videos
+  let vidCursor = null;
+  do {
+    const params = new URLSearchParams({
+      asset_folder: cloudFolder,
+      max_results: 100,
+      resource_type: 'video',
+    });
+    if (vidCursor) params.set('next_cursor', vidCursor);
+
+    const url = `https://api.cloudinary.com/v1_1/${cn}/resources/by_asset_folder?${params}`;
+    const res = await fetch(url, {
+      headers: cfg.apiKey ? { 'Authorization': `Basic ${btoa(cfg.apiKey + ':')}` } : {}
+    });
+    if (!res.ok) break;
+
+    const data = await res.json();
+    (data.resources || []).forEach(r => {
+      allItems.push(buildItem(r, 'video'));
+    });
+    vidCursor = data.next_cursor || null;
+  } while (vidCursor);
+
+  return allItems;
+}
+
+// Fallback: fetch by folder prefix
+async function fetchByPrefix(cloudFolder) {
+  const cn = cfg.cloudName;
+  const allItems = [];
+
+  for (const rtype of ['image', 'video']) {
+    let cursor = null;
+    do {
+      const params = new URLSearchParams({
+        type: 'upload',
+        prefix: cloudFolder + '/',
+        max_results: 100,
+        resource_type: rtype,
+      });
+      if (cursor) params.set('next_cursor', cursor);
+
+      const url = `https://api.cloudinary.com/v1_1/${cn}/resources/${rtype}/upload?${params}`;
+      const res = await fetch(url, {
+        headers: cfg.apiKey ? { 'Authorization': `Basic ${btoa(cfg.apiKey + ':')}` } : {}
+      });
+      if (!res.ok) { cursor = null; break; }
+
+      const data = await res.json();
+      (data.resources || []).forEach(r => allItems.push(buildItem(r, rtype)));
+      cursor = data.next_cursor || null;
+    } while (cursor);
+  }
+
+  return allItems;
+}
+
+function buildItem(r, type) {
+  const isVideo = type === 'video';
+  const url = r.secure_url;
+  const thumb = isVideo
+    ? url.replace('/upload/', '/upload/w_500,h_400,c_fill,f_jpg/').replace(/\.(mp4|mov|avi|webm)$/i, '.jpg')
+    : url.replace('/upload/', '/upload/w_500,c_limit,q_auto/');
+  const name = (r.public_id || '').split('/').pop() + '.' + (r.format || (isVideo ? 'mp4' : 'jpg'));
+  return { id: r.public_id, url, thumb, name, type: isVideo ? 'video' : 'image' };
+}
+
+function showFetchBanner(show, isError, text) {
+  const b = document.getElementById('fetch-banner');
+  if (!show) { b.classList.remove('show', 'error'); return; }
+  b.classList.add('show');
+  b.classList.toggle('error', !!isError);
+  document.getElementById('fetch-banner-text').textContent = text || '';
+}
+
+// ════════════════════════════════════════════════
+//  FOLDERS
+// ════════════════════════════════════════════════
+function renderFolders() {
+  const nav = document.getElementById('folders-nav');
+  nav.querySelectorAll('.folder-tab').forEach(t => t.remove());
+  const addBtn = nav.querySelector('.add-folder-btn');
+
+  folders.forEach(f => {
+    const tab = document.createElement('button');
+    tab.className = 'folder-tab' + (activeFolder === f.id ? ' active' : '');
+    const count = (media[f.id] || []).length;
+    tab.innerHTML = `${f.name} <span class="cnt">${count}</span>`;
+    tab.onclick = () => setActiveFolder(f.id, true);
+    nav.insertBefore(tab, addBtn);
+  });
+}
+
+function setActiveFolder(id, doSync) {
+  activeFolder = id;
+  localStorage.setItem('gLastFolder', id);
+  const f = folders.find(x => x.id === id);
+  document.getElementById('section-title').innerHTML = f ? f.name : 'Gallery';
+  document.getElementById('btn-dl-all').style.display    = 'inline-flex';
+  document.getElementById('btn-del-folder').style.display = DEFAULT_FOLDERS.find(d=>d.id===id) ? 'none' : 'inline-flex';
+  document.getElementById('upload-zone').style.display   = cfg.cloudName && cfg.preset ? 'block' : 'none';
+
+  renderFolders();
+
+  if (doSync && cfg.cloudName && cfg.preset) {
+    syncFromCloud(true);
+  } else {
+    renderGrid(); // show cached / empty
+  }
+}
+
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
 function addFolder() {
   document.getElementById('folder-name-input').value='';
   document.getElementById('folder-modal').classList.add('open');
+<<<<<<< HEAD
   setTimeout(()=>document.getElementById('folder-name-input').focus(),80);
+=======
+  setTimeout(() => document.getElementById('folder-name-input').focus(), 100);
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
 }
 
 function confirmAddFolder() {
   const name = document.getElementById('folder-name-input').value.trim();
   if (!name) { toast('Enter a folder name'); return; }
+<<<<<<< HEAD
   const id = 'f_'+Date.now();
   if (!gallery.folders) gallery.folders=[];
   gallery.folders.push({id,name});
@@ -473,10 +969,20 @@ function confirmAddFolder() {
   closeModal();
   renderFolders();
   setActiveFolder(id,false);
+=======
+  const id = 'f_' + Date.now();
+  const cloudFolder = 'graduation_gallery/' + id;
+  folders.push({ id, name, cloudFolder });
+  media[id] = [];
+  saveFolders();
+  closeModal();
+  setActiveFolder(id, false);
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
   toast(`📁 "${name}" created!`);
 }
 
 function deleteFolder() {
+<<<<<<< HEAD
   if (!activeFolder||DEFAULTS.find(d=>d.id===activeFolder)) { toast('Cannot delete default folders'); return; }
   const f = gallery.folders.find(x=>x.id===activeFolder);
   if (!confirm(`Delete folder "${f?.name}"?\n\nImages on Cloudinary are NOT deleted.`)) return;
@@ -500,42 +1006,104 @@ async function uploadFiles(files) {
   if (!cfg.cloudName||!cfg.preset) { toast('⚠️ Configure Cloudinary above first'); return; }
   if (!cfg.binId||!cfg.binKey)     { toast('⚠️ Configure JSONBin above first'); return; }
   if (!activeFolder)               { toast('Select a folder first'); return; }
+=======
+  if (!activeFolder) return;
+  if (DEFAULT_FOLDERS.find(d => d.id === activeFolder)) { toast('Cannot delete default folders'); return; }
+  const f = folders.find(x => x.id === activeFolder);
+  if (!confirm(`Delete folder "${f?.name}"?\n\nImages remain on Cloudinary unless deleted there too.`)) return;
+  folders = folders.filter(x => x.id !== activeFolder);
+  delete media[activeFolder];
+  saveFolders();
+  activeFolder = folders[0].id;
+  renderFolders();
+  setActiveFolder(activeFolder, true);
+  toast('🗑 Folder deleted');
+}
+
+function saveFolders() {
+  // Only save non-default folders
+  const extras = folders.filter(f => !DEFAULT_FOLDERS.find(d => d.id === f.id));
+  localStorage.setItem('gfolders', JSON.stringify(extras));
+}
+
+function closeModal() { document.getElementById('folder-modal').classList.remove('open'); }
+
+// ════════════════════════════════════════════════
+//  UPLOAD
+// ════════════════════════════════════════════════
+function handleDragOver(e) { e.preventDefault(); document.getElementById('upload-zone').classList.add('drag-over'); }
+function handleDragLeave() { document.getElementById('upload-zone').classList.remove('drag-over'); }
+function handleDrop(e) { e.preventDefault(); document.getElementById('upload-zone').classList.remove('drag-over'); uploadFiles(Array.from(e.dataTransfer.files)); }
+function handleFileSelect(e) { uploadFiles(Array.from(e.target.files)); e.target.value = ''; }
+
+async function uploadFiles(files) {
+  if (!cfg.cloudName || !cfg.preset) { toast('⚠️ Save your Cloudinary config first!'); return; }
+  if (!activeFolder) { toast('Select a folder first'); return; }
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
   if (!files.length) return;
 
+  const folder = folders.find(f => f.id === activeFolder);
   const prog = document.getElementById('upload-progress');
+<<<<<<< HEAD
   const bar  = document.getElementById('prog-bar');
   const pct  = document.getElementById('prog-pct');
   const lbl  = document.getElementById('prog-lbl');
+=======
+  const bar  = document.getElementById('progress-bar');
+  const pct  = document.getElementById('progress-pct');
+  const lbl  = document.getElementById('progress-lbl');
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
   prog.classList.add('show');
 
-  let done=0;
+  let done = 0;
   for (const file of files) {
     lbl.textContent = `Uploading ${file.name} (${done+1}/${files.length})…`;
     const fd = new FormData();
     fd.append('file', file);
     fd.append('upload_preset', cfg.preset);
+<<<<<<< HEAD
 
     try {
       const isVideo = file.type.startsWith('video/');
       const endpoint = `https://api.cloudinary.com/v1_1/${cfg.cloudName}/${isVideo?'video':'image'}/upload`;
       const res  = await fetch(endpoint,{method:'POST',body:fd});
+=======
+    fd.append('folder', folder.cloudFolder);
+
+    try {
+      const isVideo = file.type.startsWith('video/');
+      const endpoint = `https://api.cloudinary.com/v1_1/${cfg.cloudName}/${isVideo ? 'video' : 'image'}/upload`;
+      const res  = await fetch(endpoint, { method: 'POST', body: fd });
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
       const data = await res.json();
 
       if (data.secure_url) {
+<<<<<<< HEAD
         const item = makeItem(data, file.name, isVideo);
         if (!gallery.media[activeFolder]) gallery.media[activeFolder]=[];
         gallery.media[activeFolder].unshift(item);
+=======
+        const item = buildItem(data, isVideo ? 'video' : 'image');
+        item.name = file.name;
+        if (!media[activeFolder]) media[activeFolder] = [];
+        // Avoid duplicates
+        if (!media[activeFolder].find(x => x.id === item.id)) {
+          media[activeFolder].unshift(item);
+        }
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
         renderGrid();
         renderFolders();
         // Save to JSONBin so other devices see it
         await binSet(gallery);
       } else {
-        toast(`❌ ${file.name}: ${data.error?.message||'upload failed'}`);
+        toast(`❌ ${file.name}: ${data.error?.message || 'upload failed'}`);
       }
     } catch(e) {
       toast(`❌ Upload error: ${e.message}`);
     }
+
     done++;
+<<<<<<< HEAD
     const p=Math.round((done/files.length)*100);
     bar.style.width=p+'%'; pct.textContent=p+'%';
   }
@@ -583,12 +1151,61 @@ function renderGrid() {
         <div class="photo-card-actions">
           <div class="icon-btn" title="Download" onclick="dlItem('${su}','${sn}')">⬇</div>
           <div class="icon-btn" title="Remove" onclick="removeItem('${si}')">🗑</div>
+=======
+    const p = Math.round((done / files.length) * 100);
+    bar.style.width = p + '%';
+    pct.textContent = p + '%';
+  }
+
+  setTimeout(() => { prog.classList.remove('show'); bar.style.width = '0%'; }, 1500);
+  toast(`✅ ${done} file${done > 1 ? 's' : ''} uploaded! Syncing…`);
+  // Re-fetch from cloud to ensure consistency
+  setTimeout(() => syncFromCloud(false), 1500);
+}
+
+// ════════════════════════════════════════════════
+//  GRID
+// ════════════════════════════════════════════════
+function renderGrid() {
+  const grid  = document.getElementById('photo-grid');
+  const items = activeFolder ? (media[activeFolder] || []) : [];
+  grid.innerHTML = '';
+
+  if (!items.length) {
+    document.getElementById('empty-state').style.display = 'block';
+    return;
+  }
+  document.getElementById('empty-state').style.display = 'none';
+  lbItems = items;
+
+  items.forEach((item, idx) => {
+    const card = document.createElement('div');
+    card.className = 'photo-card';
+    card.onclick = e => { if (!e.target.closest('.icon-btn')) openLightbox(idx); };
+
+    const mediaEl = item.type === 'video'
+      ? `<video src="${item.url}" muted playsinline preload="metadata"></video><div class="video-badge">▶ Video</div>`
+      : `<img src="${item.thumb}" alt="${item.name}" loading="lazy" onerror="this.src='${item.url}'">`;
+
+    // Escape for inline onclick
+    const safeUrl  = item.url.replace(/'/g, "\\'");
+    const safeName = item.name.replace(/'/g, "\\'");
+    const safeId   = item.id.replace(/'/g, "\\'");
+
+    card.innerHTML = `${mediaEl}
+      <div class="photo-card-overlay">
+        <span class="photo-card-name">${item.name}</span>
+        <div class="photo-card-actions">
+          <div class="icon-btn" title="Download" onclick="dlItem('${safeUrl}','${safeName}')">⬇</div>
+          <div class="icon-btn" title="Remove"   onclick="removeItem('${safeId}','${activeFolder}')">🗑</div>
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
         </div>
       </div>`;
     grid.appendChild(card);
   });
 }
 
+<<<<<<< HEAD
 // ─── LIGHTBOX ──────────────────────────────────────────────────
 function openLb(idx){lbIdx=idx;renderLb();document.getElementById('lightbox').classList.add('open');document.addEventListener('keydown',lbKey);}
 function closeLb(){document.getElementById('lightbox').classList.remove('open');document.removeEventListener('keydown',lbKey);}
@@ -645,9 +1262,77 @@ function toast(msg){
 document.addEventListener('keydown',e=>{
   if(e.key==='Enter'&&document.getElementById('folder-modal').classList.contains('open'))confirmAddFolder();
   if(e.key==='Escape')closeModal();
+=======
+// ════════════════════════════════════════════════
+//  LIGHTBOX
+// ════════════════════════════════════════════════
+function openLightbox(idx)  { lbIdx = idx; renderLb(); document.getElementById('lightbox').classList.add('open'); document.addEventListener('keydown', lbKey); }
+function closeLightbox()    { document.getElementById('lightbox').classList.remove('open'); document.removeEventListener('keydown', lbKey); }
+function lbKey(e) { if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowLeft') lbNav(-1); if (e.key === 'ArrowRight') lbNav(1); }
+function lbNav(dir) { lbIdx = (lbIdx + dir + lbItems.length) % lbItems.length; renderLb(); }
+function renderLb() {
+  const item = lbItems[lbIdx];
+  if (!item) return;
+  const c = document.getElementById('lb-content');
+  c.innerHTML = item.type === 'video'
+    ? `<video src="${item.url}" controls style="max-width:88vw;max-height:78vh;border-radius:4px"></video>`
+    : `<img src="${item.url}" style="max-width:88vw;max-height:78vh;border-radius:4px;object-fit:contain" alt="${item.name}">`;
+}
+function downloadCurrent() { const i = lbItems[lbIdx]; if (i) dlItem(i.url, i.name); }
+function deleteCurrent()   { const i = lbItems[lbIdx]; if (i) { closeLightbox(); removeItem(i.id, activeFolder); } }
+
+// ════════════════════════════════════════════════
+//  ACTIONS
+// ════════════════════════════════════════════════
+function dlItem(url, name) {
+  const a = document.createElement('a');
+  a.href = url; a.download = name; a.target = '_blank'; a.click();
+  toast('⬇ Downloading…');
+}
+
+async function downloadAll() {
+  const items = media[activeFolder] || [];
+  if (!items.length) { toast('No files in this folder'); return; }
+  toast(`⬇ Opening ${Math.min(items.length, 15)} downloads…`);
+  for (let i = 0; i < Math.min(items.length, 15); i++) {
+    await new Promise(r => setTimeout(r, 380));
+    dlItem(items[i].url, items[i].name);
+  }
+  if (items.length > 15) toast('For more, visit your Cloudinary Media Library');
+}
+
+function removeItem(id, fId) {
+  if (!confirm('Remove from gallery?\n(File stays on Cloudinary unless deleted there too)')) return;
+  media[fId] = (media[fId] || []).filter(x => x.id !== id);
+  renderGrid(); renderFolders();
+  toast('🗑 Removed from gallery view');
+}
+
+// ════════════════════════════════════════════════
+//  TOAST & KEYBOARD
+// ════════════════════════════════════════════════
+let toastT;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('show'), 3500);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('folder-modal').classList.contains('open')) confirmAddFolder();
+  if (e.key === 'Escape') closeModal();
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
 });
 
+// ════════════════════════════════════════════════
+//  START
+// ════════════════════════════════════════════════
 init();
 </script>
+<<<<<<< HEAD
 </body>  
 </html>
+=======
+</body>
+</html>
+>>>>>>> 7479af2a63761bae25aaeca5456b7e137337b3c1
