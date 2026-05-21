@@ -166,7 +166,7 @@ main{max-width:1200px;margin:0 auto;padding:8px 20px 80px;}
     <h4>One-time setup — 5 minutes</h4>
     <div class="steps-list">
       <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Cloudinary:</strong> Sign up free → Dashboard → copy your <strong>Cloud Name</strong> → Settings → Upload → Add preset → set <strong>Unsigned</strong> → copy preset name</div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>JSONBin:</strong> Sign up free at <a href="https://jsonbin.io" target="_blank" style="color:var(--gold-dark);font-weight:600">jsonbin.io</a> → click <strong>+ New Bin</strong> → paste this as content: <code style="background:#f0e8d8;padding:1px 4px;border-radius:3px">{"folders":[{"id":"grad2025","name":"🎓 2025 Graduation"},{"id":"grad2026","name":"🎓 2026 Graduation"},{"id":"extras","name":"📷 Extra Memories"}],"media":{"grad2025":[],"grad2026":[],"extras":[]}}</code> → Save → copy the <strong>Bin ID</strong> from the URL</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>JSONBin:</strong> Sign up free at <a href="https://jsonbin.io" target="_blank" style="color:var(--gold-dark);font-weight:600">jsonbin.io</a> → click <strong>+ New Bin</strong> → paste <code style="background:#f0e8d8;padding:1px 4px;border-radius:3px">{}</code> as content → Save → copy the <strong>Bin ID</strong> from the URL</div></div>
       <div class="step"><div class="step-num">3</div><div class="step-text"><strong>JSONBin API Key:</strong> In JSONBin → go to <strong>API Keys</strong> in the menu → create a key → copy it</div></div>
       <div class="step"><div class="step-num">4</div><div class="step-text">Paste all four values below → <strong>Save &amp; Connect</strong>. Done! Same credentials on every device = shared gallery.</div></div>
     </div>
@@ -225,6 +225,7 @@ main{max-width:1200px;margin:0 auto;padding:8px 20px 80px;}
     <div class="upload-icon">📸</div>
     <h3>Drop photos &amp; videos here</h3>
     <p>or tap to browse · JPG, PNG, HEIC, GIF, MP4, MOV · any device</p>
+    <p id="upload-folder-hint" style="margin-top:8px;font-size:10.5px;color:var(--gold-dark);font-weight:600;"></p>
   </div>
 
   <div class="upload-progress" id="upload-progress">
@@ -443,15 +444,26 @@ function renderFolders() {
   });
 }
 
-function setActiveFolder(id,doSync) {
+function setActiveFolder(id, doSync) {
   activeFolder = id;
-  localStorage.setItem('gLastFolder',id);
+  localStorage.setItem('gLastFolder', id);
   const f = (gallery.folders||[]).find(x=>x.id===id);
   document.getElementById('section-title').innerHTML = f ? f.name : 'Gallery';
   const isDef = DEFAULTS.find(d=>d.id===id);
   document.getElementById('btn-dl-all').style.display     = 'inline-flex';
   document.getElementById('btn-del-folder').style.display = isDef ? 'none' : 'inline-flex';
-  document.getElementById('upload-zone').style.display    = cfg.cloudName&&cfg.preset ? 'block':'none';
+
+  const hasConfig = !!(cfg.cloudName && cfg.preset);
+  document.getElementById('upload-zone').style.display = hasConfig ? 'block' : 'none';
+
+  // Always show exactly which Cloudinary subfolder uploads go to
+  const hint = document.getElementById('upload-folder-hint');
+  if (hint) {
+    hint.textContent = hasConfig
+      ? '\u21b3 Uploads go to Cloudinary folder: ' + cloudinaryFolderPath(id)
+      : '';
+  }
+
   renderFolders();
   renderGrid();
 }
@@ -465,15 +477,16 @@ function addFolder() {
 function confirmAddFolder() {
   const name = document.getElementById('folder-name-input').value.trim();
   if (!name) { toast('Enter a folder name'); return; }
-  const id = 'f_'+Date.now();
-  if (!gallery.folders) gallery.folders=[];
-  gallery.folders.push({id,name});
-  gallery.media[id]=[];
+  const id = 'f_' + Date.now();
+  if (!gallery.folders) gallery.folders = [];
+  gallery.folders.push({ id, name });
+  gallery.media[id] = [];
   scheduleSave();
   closeModal();
   renderFolders();
-  setActiveFolder(id,false);
-  toast(`📁 "${name}" created!`);
+  setActiveFolder(id, false);
+  const cPath = cloudinaryFolderPath(id);
+  toast('\ud83d\udcc1 "' + name + '" created! Uploads go to: ' + cPath);
 }
 
 function deleteFolder() {
@@ -496,68 +509,113 @@ function handleDragLeave(){document.getElementById('upload-zone').classList.remo
 function handleDrop(e){e.preventDefault();document.getElementById('upload-zone').classList.remove('drag-over');uploadFiles(Array.from(e.dataTransfer.files));}
 function handleFileSelect(e){uploadFiles(Array.from(e.target.files));e.target.value='';}
 
+// Each gallery folder maps to a Cloudinary folder path.
+// We derive it from the folder id so it's always consistent.
+function cloudinaryFolderPath(folderId) {
+  // Use a clean path like: graduation_gallery/grad2025
+  // Strip any leading/trailing slashes, lowercase, safe chars only
+  const safe = folderId.replace(/[^a-zA-Z0-9_\-]/g, '_').toLowerCase();
+  return `graduation_gallery/${safe}`;
+}
+
 async function uploadFiles(files) {
   if (!cfg.cloudName||!cfg.preset) { toast('⚠️ Configure Cloudinary above first'); return; }
   if (!cfg.binId||!cfg.binKey)     { toast('⚠️ Configure JSONBin above first'); return; }
   if (!activeFolder)               { toast('Select a folder first'); return; }
   if (!files.length) return;
 
+  // Derive the Cloudinary folder path for the active gallery folder
+  const folderPath = cloudinaryFolderPath(activeFolder);
+
   const prog = document.getElementById('upload-progress');
   const bar  = document.getElementById('prog-bar');
   const pct  = document.getElementById('prog-pct');
   const lbl  = document.getElementById('prog-lbl');
   prog.classList.add('show');
+  showBar('info', `<span class="spin">⟳</span>&nbsp; Uploading to <strong>${folderPath}</strong> on Cloudinary…`);
 
-  let done=0;
+  let done=0, failed=0;
   for (const file of files) {
     lbl.textContent = `Uploading ${file.name} (${done+1}/${files.length})…`;
+
     const fd = new FormData();
     fd.append('file', file);
     fd.append('upload_preset', cfg.preset);
+    // ✅ KEY FIX: always send the folder so Cloudinary creates/uses it
+    fd.append('folder', folderPath);
 
     try {
       const isVideo = file.type.startsWith('video/');
       const endpoint = `https://api.cloudinary.com/v1_1/${cfg.cloudName}/${isVideo?'video':'image'}/upload`;
-      const res  = await fetch(endpoint,{method:'POST',body:fd});
+      const res  = await fetch(endpoint, { method:'POST', body:fd });
       const data = await res.json();
 
       if (data.secure_url) {
         const item = makeItem(data, file.name, isVideo);
         if (!gallery.media[activeFolder]) gallery.media[activeFolder]=[];
-        gallery.media[activeFolder].unshift(item);
+        // Avoid duplicates by public_id
+        if (!gallery.media[activeFolder].find(x=>x.id===item.id)) {
+          gallery.media[activeFolder].unshift(item);
+        }
         renderGrid();
         renderFolders();
-        // Save to JSONBin so other devices see it
+        // Save immediately to JSONBin so other devices see it
         await binSet(gallery);
       } else {
-        toast(`❌ ${file.name}: ${data.error?.message||'upload failed'}`);
+        failed++;
+        const msg = data.error?.message || 'Upload failed';
+        toast(`❌ ${file.name}: ${msg}`);
+        showBar('err', `❌ Upload failed for "${file.name}": ${msg}`);
       }
     } catch(e) {
-      toast(`❌ Upload error: ${e.message}`);
+      failed++;
+      toast(`❌ Network error uploading ${file.name}`);
     }
+
     done++;
-    const p=Math.round((done/files.length)*100);
-    bar.style.width=p+'%'; pct.textContent=p+'%';
+    const p = Math.round((done/files.length)*100);
+    bar.style.width = p+'%';
+    pct.textContent = p+'%';
   }
-  setTimeout(()=>{prog.classList.remove('show');bar.style.width='0%';},1500);
-  toast(`✅ ${done} file${done>1?'s':''} uploaded & synced!`);
-  setStatus('ok',`Connected ✓ · Gallery updated`);
+
+  setTimeout(()=>{ prog.classList.remove('show'); bar.style.width='0%'; }, 1500);
+  const uploaded = done - failed;
+  if (uploaded > 0) {
+    toast(`✅ ${uploaded} file${uploaded>1?'s':''} uploaded to ${folderPath}!`);
+    showBar('ok', `✅ ${uploaded} file${uploaded>1?'s':''} saved to <strong>${folderPath}</strong> on Cloudinary`);
+    setTimeout(()=>showBar('hide'), 4000);
+    setStatus('ok', `Connected ✓ · Gallery updated`);
+  }
 }
 
 function makeItem(r, originalName, isVideo) {
   const cn  = cfg.cloudName;
-  const ext = r.format ? `.${r.format}` : (isVideo?'.mp4':'.jpg');
+  // r.secure_url is the canonical URL — always use it directly
+  // r.public_id already includes the folder path e.g. "graduation_gallery/grad2025/my_photo"
   const url = r.secure_url;
-  const thumb = isVideo
-    ? `https://res.cloudinary.com/${cn}/video/upload/w_500,h_380,c_fill,f_jpg,so_1/${r.public_id}.jpg`
-    : `https://res.cloudinary.com/${cn}/image/upload/w_600,c_limit,q_auto,f_auto/${r.public_id}${ext}`;
+  const ext = r.format ? r.format : (isVideo ? 'mp4' : 'jpg');
+
+  // Build thumb using Cloudinary transformations on the public_id
+  // We must NOT double-add the folder — public_id already has it
+  let thumb;
+  if (isVideo) {
+    // Replace extension in secure_url for the thumbnail
+    thumb = url
+      .replace('/video/upload/', '/video/upload/w_500,h_380,c_fill,f_jpg,so_1/')
+      .replace(/\.[^.]+$/, '.jpg');
+  } else {
+    thumb = url.replace('/image/upload/', '/image/upload/w_600,c_limit,q_auto,f_auto/');
+  }
+
+  const displayName = originalName || r.public_id.split('/').pop() + '.' + ext;
+
   return {
-    id: r.public_id,
-    url,
+    id:    r.public_id,   // e.g. "graduation_gallery/grad2025/photo_xyz"
+    url,                  // full secure_url from Cloudinary response
     thumb,
-    name: originalName || (r.public_id.split('/').pop()+ext),
-    type: isVideo?'video':'image',
-    ts: Date.now()
+    name:  displayName,
+    type:  isVideo ? 'video' : 'image',
+    ts:    Date.now()
   };
 }
 
@@ -649,5 +707,5 @@ document.addEventListener('keydown',e=>{
 
 init();
 </script>
-</body>  
+</body>
 </html>
